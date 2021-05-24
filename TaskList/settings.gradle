@@ -1,2 +1,4 @@
-rootProject.name = "TaskList"
+include ':framework'
+include ':core'
 include ':app'
+rootProject.name = "TaskList"

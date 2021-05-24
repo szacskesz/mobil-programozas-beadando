@@ -1,0 +1,30 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+
+android {
+    def globalConfiguration = rootProject.ext
+
+    compileSdkVersion globalConfiguration.androidCompileSdkVersion
+    buildToolsVersion globalConfiguration.androidBuildToolsVersion
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    def commonDependencies = rootProject.ext.common
+    def frameworkDependencies = rootProject.ext.frameworkModule
+
+    implementation project(':core')
+
+    implementation commonDependencies.kotlinStdLib
+    implementation frameworkDependencies.roomRuntime
+    kapt frameworkDependencies.roomCompiler
+    implementation frameworkDependencies.roomKtx
+}
