@@ -1,3 +1,46 @@
 <resources>
-  <string name="app_name">TaskList</string>
+  <!-- Main -->
+  <string name="main_activity_title">TaskList</string>
+  <string name="todo">English todo</string>
+
+  <!-- Menu -->
+  <string name="menu_action_groups_title">Groups</string>
+  <string name="menu_action_settings_title">Settings</string>
+
+  <!-- Groups -->
+  <string name="groups_activity_title">Groups</string>
+  <string name="groups_item_add_description">Add group</string>
+  <string name="groups_item_edit_description">Edit group</string>
+  <string name="groups_item_delete_description">Delete group</string>
+  <string name="groups_item_tasks_count_zero">No tasks</string>
+  <string name="groups_item_tasks_count">Tasks: %1$d</string>
+  <string name="groups_item_overdue_tasks_count">(%1$d overdue)</string>
+
+  <!-- Settings -->
+  <string name="settings_activity_title">Settings</string>
+  <string name="settings_category_general_title">General</string>
+  <string name="settings_language_title">Language</string>
+  <string name="settings_group_title">Default group</string>
+  <string name="settings_group_default_selected_title">All (default)</string>
+  <string name="settings_category_notifications_title">Notifications</string>
+  <string name="settings_notifications_title">Notifications</string>
+  <string name="settings_notifications_on">Enabled</string>
+  <string name="settings_notifications_off">Disabled</string>
+  <string name="settings_sound_title">Sound</string>
+  <string name="settings_sound_on">Enabled</string>
+  <string name="settings_sound_off">Disabled</string>
+  <string name="settings_sound_file_title">Choose a sound</string>
+  <string name="settings_sound_file_dialog_title">Choose a sound</string>
+  <string name="settings_sound_file_no_value">Not set</string>
+  <string name="settings_sound_file_value">%s</string>
+  <string name="settings_vibration_title">Vibration</string>
+  <string name="settings_vibration_on">Enabled</string>
+  <string name="settings_vibration_off">Disabled</string>
+  <string name="settings_day_summary_title">Day summary</string>
+  <string name="settings_day_summary_on">Enabled</string>
+  <string name="settings_day_summary_off">Disabled</string>
+  <string name="settings_day_summary_time_title">Choose time</string>
+  <string name="settings_day_summary_time_dialog_title">Choose a time</string>
+  <string name="settings_day_summary_time_no_value">Not set</string>
+  <string name="settings_day_summary_time_value">%s</string>
 </resources>

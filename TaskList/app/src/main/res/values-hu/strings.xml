@@ -1,0 +1,46 @@
+<resources>
+  <!-- Main -->
+  <string name="main_activity_title">TaskList</string>
+  <string name="todo">Magyar todo</string>
+
+  <!-- Menu -->
+  <string name="menu_action_groups_title">Csoportok</string>
+  <string name="menu_action_settings_title">Beállítások</string>
+
+  <!-- Groups -->
+  <string name="groups_activity_title">Csoportok</string>
+  <string name="groups_item_add_description">Csoport létrehozása</string>
+  <string name="groups_item_edit_description">Csoport módosítása</string>
+  <string name="groups_item_delete_description">Csoport törlése</string>
+  <string name="groups_item_tasks_count_zero">Nincsenek feladatok</string>
+  <string name="groups_item_tasks_count">Feladatok: %1$d</string>
+  <string name="groups_item_overdue_tasks_count">(%1$d lejárt)</string>
+
+  <!-- Settings -->
+  <string name="settings_activity_title">Beállítások</string>
+  <string name="settings_category_general_title">Általános</string>
+  <string name="settings_language_title">Nyelv</string>
+  <string name="settings_group_title">Alapértelmezett csoport</string>
+  <string name="settings_group_default_selected_title">Mind (alapértelmezett)</string>
+  <string name="settings_category_notifications_title">Értesítések</string>
+  <string name="settings_notifications_title">Értesítések</string>
+  <string name="settings_notifications_on">Engedélyezve</string>
+  <string name="settings_notifications_off">Tiltva</string>
+  <string name="settings_sound_title">Hang</string>
+  <string name="settings_sound_on">Engedélyezve</string>
+  <string name="settings_sound_off">Tiltva</string>
+  <string name="settings_sound_file_title">Válassz egy hangot</string>
+  <string name="settings_sound_file_dialog_title">Válassz egy hangot</string>
+  <string name="settings_sound_file_no_value">Nincs megadva</string>
+  <string name="settings_sound_file_value">%s</string>
+  <string name="settings_vibration_title">Rezgés</string>
+  <string name="settings_vibration_on">Engedélyezve</string>
+  <string name="settings_vibration_off">Tiltva</string>
+  <string name="settings_day_summary_title">Napi összefoglaló</string>
+  <string name="settings_day_summary_on">Engedélyezve</string>
+  <string name="settings_day_summary_off">Tiltva</string>
+  <string name="settings_day_summary_time_title">Válassz egy időpontot</string>
+  <string name="settings_day_summary_time_dialog_title">Válassz egy időpontot</string>
+  <string name="settings_day_summary_time_no_value">Nincs megadva</string>
+  <string name="settings_day_summary_time_value">%s</string>
+</resources>
