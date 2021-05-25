@@ -3,7 +3,7 @@
     tools:ignore="MissingTranslation"
 >
     <string name="settings_language_key">language</string>
-    <string name="settings_group_key">group</string>
+    <string name="settings_default_task_list_key">default_task_list</string>
     <string name="settings_notifications_key">notifications</string>
     <string name="settings_sound_key">sound</string>
     <string name="settings_sound_file_key">sound_file</string>

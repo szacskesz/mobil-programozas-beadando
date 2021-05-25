@@ -1,4 +1,4 @@
-package hu.szacskesz.mobile.tasklist
+package hu.szacskesz.mobile.tasklist.common
 
 import android.content.Context
 import android.content.ContextWrapper
@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import hu.szacskesz.mobile.tasklist.R
 import hu.szacskesz.mobile.tasklist.utils.ContextUtils
 import java.util.Locale
 

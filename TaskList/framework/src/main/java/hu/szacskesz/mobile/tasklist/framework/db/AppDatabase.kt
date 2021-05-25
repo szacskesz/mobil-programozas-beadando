@@ -25,5 +25,5 @@ abstract class AppDatabase : RoomDatabase() {
         fun getInstance(context: Context) : AppDatabase = (instance ?: create(context)).also { instance = it }
     }
 
-    abstract fun groupDao() : TaskListDao
+    abstract fun taskListDao() : TaskListDao
 }

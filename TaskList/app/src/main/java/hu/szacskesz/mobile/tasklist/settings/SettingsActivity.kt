@@ -1,8 +1,10 @@
-package hu.szacskesz.mobile.tasklist
+package hu.szacskesz.mobile.tasklist.settings
 
 import android.os.Bundle
 import androidx.preference.ListPreference
 import com.takisoft.preferencex.PreferenceFragmentCompat
+import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
+import hu.szacskesz.mobile.tasklist.R
 
 
 class SettingsActivity : BaseLanguageAwareActivity() {
@@ -31,17 +33,17 @@ class SettingsActivity : BaseLanguageAwareActivity() {
                 return@setOnPreferenceChangeListener true
             }
 
-            val groupListPreference: ListPreference? = findPreference(getString(R.string.settings_group_key))
-//            TODO get groups (names, ids), set default
-            groupListPreference?.entries = arrayOf<CharSequence>(
-                getString(R.string.settings_group_default_selected_title),
+            val defaultTaskListListPreference: ListPreference? = findPreference(getString(R.string.settings_default_task_list_key))
+//            TODO get task-lists (names, ids), set default
+            defaultTaskListListPreference?.entries = arrayOf<CharSequence>(
+                getString(R.string.settings_default_task_list_default_selected_title),
                 // TODO
             )
-            groupListPreference?.entryValues = arrayOf<CharSequence>(
-                getString(R.string.settings_group_values_default),
+            defaultTaskListListPreference?.entryValues = arrayOf<CharSequence>(
+                getString(R.string.settings_default_task_list_values_default),
                 // TODO
             )
-            groupListPreference?.setDefaultValue(getString(R.string.settings_group_values_default))
+            defaultTaskListListPreference?.setDefaultValue(getString(R.string.settings_default_task_list_values_default))
         }
     }
 }

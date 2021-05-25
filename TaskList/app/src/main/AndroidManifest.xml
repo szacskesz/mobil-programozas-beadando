@@ -4,6 +4,7 @@
   package="hu.szacskesz.mobile.tasklist">
 
   <application
+    android:name=".TaskListApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/main_activity_title"
@@ -21,13 +22,13 @@
     </activity>
 
     <activity
-      android:name=".SettingsActivity"
+      android:name=".settings.SettingsActivity"
       android:label="@string/settings_activity_title"
       android:parentActivityName=".MainActivity" />
 
     <activity
-      android:name=".groups.GroupsActivity"
-      android:label="@string/groups_activity_title"
+      android:name=".tasklists.TaskListsActivity"
+      android:label="@string/task_lists_activity_title"
       android:parentActivityName=".MainActivity"
       android:theme="@style/Theme.TaskList.NoActionBar" />
   </application>

@@ -25,6 +25,8 @@ ext {
     constraint_layout_version = "2.0.4"
     preference_ktx_version = "1.1.1"
     takisoft_preferencex_version = "1.1.0"
+    lifecycle_version = "2.3.1"
+    lifecycle_extensions_version = "2.2.0"
 
     // core dependencies version
 
@@ -33,8 +35,7 @@ ext {
 
     //TODO
 //    legacy_support_version = "1.0.0"
-//    lifecycle_version = "2.3.1"
-//    lifecycle_extensions_version = "2.2.0"
+
 
 //    photo_view_version = "2.3.0"
 //    glide_version = "4.9.0"
@@ -54,15 +55,14 @@ ext {
         takisoftPreferencex:                "com.takisoft.preferencex:preferencex:$takisoft_preferencex_version",
         takisoftPreferencexRingtone:        "com.takisoft.preferencex:preferencex-ringtone:$takisoft_preferencex_version",
         takisoftPreferencexDateTimePicker:  "com.takisoft.preferencex:preferencex-datetimepicker:$takisoft_preferencex_version",
+        livedata:                           "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+        viewmodel:                          "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+        lifecycleExt:                       "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions_version",
 
             //TODO
 //        photoView:                          "com.github.chrisbanes:PhotoView:$photo_view_version",
 //        glide:          "com.github.bumptech.glide:glide:$glide_version",
 //        legacySupport:      "androidx.legacy:legacy-support-v4:$legacy_support_version",
-//        livedata:           "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
-//        viewmodel:          "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
-//        lifecycleExt:       "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions_version",
-//        photoView:          "com.github.chrisbanes:PhotoView:$photo_view_version"
     ]
 
     coreModule = [

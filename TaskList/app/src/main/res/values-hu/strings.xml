@@ -4,24 +4,34 @@
   <string name="todo">Magyar todo</string>
 
   <!-- Menu -->
-  <string name="menu_action_groups_title">Csoportok</string>
+  <string name="menu_action_task_lists_title">Feladat listák</string>
   <string name="menu_action_settings_title">Beállítások</string>
 
-  <!-- Groups -->
-  <string name="groups_activity_title">Csoportok</string>
-  <string name="groups_item_add_description">Csoport létrehozása</string>
-  <string name="groups_item_edit_description">Csoport módosítása</string>
-  <string name="groups_item_delete_description">Csoport törlése</string>
-  <string name="groups_item_tasks_count_zero">Nincsenek feladatok</string>
-  <string name="groups_item_tasks_count">Feladatok: %1$d</string>
-  <string name="groups_item_overdue_tasks_count">(%1$d lejárt)</string>
+  <!-- Task lists -->
+  <string name="task_lists_activity_title">Feladat listák</string>
+  <string name="task_lists_item_add_description">Feladat lista létrehozása</string>
+  <string name="task_lists_item_edit_description">Feladat lista módosítása</string>
+  <string name="task_lists_item_delete_description">Feladat lista törlése</string>
+  <string name="task_lists_item_tasks_count_zero">Nincsenek feladatok</string>
+  <string name="task_lists_item_tasks_count">Feladatok: %1$d</string>
+  <string name="task_lists_item_overdue_tasks_count">(%1$d lejárt)</string>
+  <string name="task_lists_delete_dialog_title">Biztos benne?</string>
+  <string name="task_lists_delete_dialog_message">A listából az összes feladat is törlődik.</string>
+  <string name="task_lists_delete_dialog_yes_button">Törlés</string>
+  <string name="task_lists_delete_dialog_no_button">Mégse</string>
+  <string name="task_lists_editor_create_dialog_title">Új lista</string>
+  <string name="task_lists_editor_update_dialog_title">Lista szerkesztése</string>
+  <string name="task_lists_editor_dialog_field_name_hint">Adja meg a lista nevét</string>
+  <string name="task_lists_editor_create_dialog_yes_button">Hozzáad</string>
+  <string name="task_lists_editor_update_dialog_yes_button">Mentés</string>
+  <string name="task_lists_editor_dialog_no_button">Mégse</string>
 
   <!-- Settings -->
   <string name="settings_activity_title">Beállítások</string>
   <string name="settings_category_general_title">Általános</string>
   <string name="settings_language_title">Nyelv</string>
-  <string name="settings_group_title">Alapértelmezett csoport</string>
-  <string name="settings_group_default_selected_title">Mind (alapértelmezett)</string>
+  <string name="settings_default_task_list_title">Alapértelmezett feladat lista</string>
+  <string name="settings_default_task_list_default_selected_title">Mind (alapértelmezett)</string>
   <string name="settings_category_notifications_title">Értesítések</string>
   <string name="settings_notifications_title">Értesítések</string>
   <string name="settings_notifications_on">Engedélyezve</string>

@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import hu.szacskesz.mobile.tasklist.groups.GroupsActivity
+import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
+import hu.szacskesz.mobile.tasklist.settings.SettingsActivity
+import hu.szacskesz.mobile.tasklist.tasklists.TaskListsActivity
 
 
 class MainActivity : BaseLanguageAwareActivity() {
@@ -20,8 +22,8 @@ class MainActivity : BaseLanguageAwareActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_action_groups -> {
-                this.startActivity(Intent(this, GroupsActivity::class.java))
+            R.id.menu_action_task_lists -> {
+                this.startActivity(Intent(this, TaskListsActivity::class.java))
             }
             R.id.menu_action_settings -> {
                 this.startActivity(Intent(this, SettingsActivity::class.java))

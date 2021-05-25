@@ -14,8 +14,8 @@
         />
 
         <ListPreference
-            app:key="@string/settings_group_key"
-            app:title="@string/settings_group_title"
+            app:key="@string/settings_default_task_list_key"
+            app:title="@string/settings_default_task_list_title"
             app:useSimpleSummaryProvider="true"
         />
     </PreferenceCategory>

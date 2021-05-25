@@ -5,9 +5,9 @@
     tools:context="com.example.testapp.MainActivity"
 >
     <item
-        android:id="@+id/menu_action_groups"
+        android:id="@+id/menu_action_task_lists"
         android:orderInCategory="1"
-        android:title="@string/menu_action_groups_title"
+        android:title="@string/menu_action_task_lists_title"
         app:showAsAction="never"
     />
     <item

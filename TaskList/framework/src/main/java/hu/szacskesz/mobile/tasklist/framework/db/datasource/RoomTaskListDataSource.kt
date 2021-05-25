@@ -8,7 +8,7 @@ import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskListEntity
 
 class RoomTaskListDataSource(val context: Context) : TaskListDataSource {
 
-    private val taskListDao = AppDatabase.getInstance(context).groupDao()
+    private val taskListDao = AppDatabase.getInstance(context).taskListDao()
 
     override suspend fun create(taskList: TaskList) {
         return taskListDao.create( TaskListEntity(taskList.id, taskList.name) )
@@ -21,7 +21,7 @@ class RoomTaskListDataSource(val context: Context) : TaskListDataSource {
     }
 
     override suspend fun update(taskList: TaskList)  {
-        return taskListDao.create( TaskListEntity(taskList.id, taskList.name) )
+        return taskListDao.update( TaskListEntity(taskList.id, taskList.name) )
     }
 
     override suspend fun delete(taskList: TaskList) {

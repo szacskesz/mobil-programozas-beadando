@@ -31,12 +31,12 @@
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintTop_toTopOf="parent"
           android:layout_gravity="center"
-          android:text="@string/groups_activity_title"
+          android:text="@string/task_lists_activity_title"
           tools:text="Title"
         />
 
         <ImageButton
-          android:id="@+id/groups_item_add_button"
+          android:id="@+id/task_lists_item_add_button"
           android:layout_width="@dimen/button"
           android:layout_height="@dimen/button"
           app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
           android:layout_marginEnd="10dp"
           android:layout_marginRight="10dp"
           android:background="?attr/selectableItemBackgroundBorderless"
-          android:contentDescription="@string/groups_item_add_description"
+          android:contentDescription="@string/task_lists_item_add_description"
           android:src="@drawable/ic_add" />
 
       </androidx.constraintlayout.widget.ConstraintLayout>
@@ -58,14 +58,14 @@
     android:layout_height="match_parent"
     android:background="@color/light_gray"
     android:paddingVertical="5dp"
-    tools:context=".groups.GroupsActivity">
+    tools:context=".tasklists.TaskListsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/groups_recycler_view"
+      android:id="@+id/task_lists_recycler_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-      tools:listitem="@layout/groups_item" />
+      tools:listitem="@layout/task_lists_item" />
 
   </FrameLayout>
 </LinearLayout>
