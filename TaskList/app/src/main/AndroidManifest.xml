@@ -7,14 +7,16 @@
     android:name=".TaskListApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
-    android:label="@string/main_activity_title"
+    android:label="@string/tasks_activity_title"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.TaskList">
 
     <activity
-      android:name=".MainActivity"
-      android:label="@string/main_activity_title">
+      android:name=".tasks.TasksActivity"
+      android:label="@string/tasks_activity_title"
+      android:launchMode="singleTop"
+      android:theme="@style/Theme.TaskList.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
@@ -24,13 +26,19 @@
     <activity
       android:name=".settings.SettingsActivity"
       android:label="@string/settings_activity_title"
-      android:parentActivityName=".MainActivity" />
+      android:parentActivityName=".tasks.TasksActivity" />
 
     <activity
       android:name=".tasklists.TaskListsActivity"
       android:label="@string/task_lists_activity_title"
-      android:parentActivityName=".MainActivity"
+      android:parentActivityName=".tasks.TasksActivity"
       android:theme="@style/Theme.TaskList.NoActionBar" />
+
+    <activity
+      android:name=".tasks.TasksEditorActivity"
+      android:parentActivityName=".tasks.TasksActivity"
+      android:theme="@style/Theme.TaskList.NoActionBar" />
+
   </application>
 
 </manifest>

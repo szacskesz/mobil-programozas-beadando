@@ -1,11 +1,30 @@
 <resources>
-  <!-- Main -->
-  <string name="main_activity_title">TaskList</string>
-  <string name="todo">English todo</string>
-
   <!-- Menu -->
   <string name="menu_action_task_lists_title">Task lists</string>
   <string name="menu_action_settings_title">Settings</string>
+
+  <!-- Tasks -->
+  <string name="tasks_activity_title">TaskList</string>
+  <string name="tasks_item_add_description">Add task</string>
+  <string name="tasks_editor_create_activity_title">New task</string>
+  <string name="tasks_editor_update_activity_title" />
+  <string name="tasks_editor_save_description">Save task</string>
+  <string name="tasks_editor_delete_description">Delete task</string>
+  <string name="tasks_editor_field_description_label">What is to be done?</string>
+  <string name="tasks_editor_field_description_hint">Enter task here</string>
+  <string name="tasks_editor_field_done_label">Task finished?</string>
+  <string name="tasks_editor_field_due_label">Due date</string>
+<!--  <string name="tasks_editor_field_due_date_hint">Date not set</string>--> <!--TODO-->
+<!--  <string name="tasks_editor_field_due_time_hint">Time not set (all day)</string>--> <!--TODO-->
+  <string name="tasks_editor_create_field_list_label">Add to list</string>
+  <string name="tasks_editor_update_field_list_label">Task list</string>
+  <string name="tasks_delete_dialog_title">Are you sure</string>
+  <string name="tasks_delete_dialog_yes_button">Delete</string>
+  <string name="tasks_delete_dialog_no_button">Cancel</string>
+
+  <string name="task_list_none_name">None*</string>
+  <string name="task_list_all_name">All*</string>
+  <string name="task_list_finished_name">Finished*</string>
 
   <!-- Task lists -->
   <string name="task_lists_activity_title">Task lists</string>

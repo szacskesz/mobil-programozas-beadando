@@ -1,0 +1,51 @@
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginHorizontal="10dp"
+  android:layout_marginVertical="5dp"
+  android:background="@drawable/task_lists_item_background"
+  android:baselineAligned="false"
+  android:clickable="true"
+  android:focusable="true"
+  android:orientation="horizontal"
+  android:padding="5dp">
+
+  <CheckBox
+    android:id="@+id/tasks_item_done"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/tasks_item_name"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4sp"
+      android:textColor="@color/black"
+      android:textSize="18sp"
+      tools:text="Please do your english homework for a minimum grade of 2 this year, thanks." />
+
+        <TextView
+          android:id="@+id/tasks_item_due"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="12sp"
+          tools:text="Tue, Sep 15, 2020" />
+
+        <TextView
+          android:id="@+id/tasks_item_list_name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="12sp"
+          tools:text="University" />
+  </LinearLayout>
+</LinearLayout>

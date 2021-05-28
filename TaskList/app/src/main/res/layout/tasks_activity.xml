@@ -23,31 +23,30 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-          style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+        <Spinner
+          android:id="@+id/task_list_dropdown"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          android:layout_marginRight="@dimen/button"
+          android:layout_marginEnd="@dimen/button"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintTop_toTopOf="parent"
-          android:layout_gravity="center"
-          android:text="@string/task_lists_activity_title"
-          tools:text="Title"
-        />
+          app:layout_constraintRight_toLeftOf="@+id/tasks_item_add_button" />
 
         <ImageButton
-          android:id="@+id/task_lists_item_add_button"
+          android:id="@+id/tasks_item_add_button"
           android:layout_width="@dimen/button"
           android:layout_height="@dimen/button"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintRight_toRightOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
           android:layout_marginEnd="10dp"
           android:layout_marginRight="10dp"
           android:background="?attr/selectableItemBackgroundBorderless"
-          android:contentDescription="@string/task_lists_item_add_description"
+          android:contentDescription="@string/tasks_item_add_description"
           android:src="@drawable/ic_add"
-          app:tint="@color/white" />
+          app:tint="@color/white"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
       </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -59,14 +58,17 @@
     android:layout_height="match_parent"
     android:background="@color/light_gray"
     android:paddingVertical="5dp"
-    tools:context=".tasklists.TaskListsActivity">
+    tools:context=".tasks.TasksActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-      android:id="@+id/task_lists_recycler_view"
+      android:id="@+id/tasks_recycler_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-      tools:listitem="@layout/task_lists_item" />
+      tools:listitem="@layout/tasks_item" />
 
   </FrameLayout>
 </LinearLayout>
+
+
+

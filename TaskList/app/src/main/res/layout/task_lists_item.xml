@@ -1,5 +1,6 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
@@ -57,7 +58,8 @@
       android:layout_marginLeft="10dp"
       android:background="?attr/selectableItemBackgroundBorderless"
       android:contentDescription="@string/task_lists_item_edit_description"
-      android:src="@drawable/ic_edit" />
+      android:src="@drawable/ic_edit"
+      app:tint="@color/alert_blue" />
 
     <ImageButton
       android:id="@+id/task_lists_item_delete_button"
@@ -67,6 +69,7 @@
       android:layout_marginLeft="10dp"
       android:background="?attr/selectableItemBackgroundBorderless"
       android:contentDescription="@string/task_lists_item_delete_description"
-      android:src="@drawable/ic_delete" />
+      android:src="@drawable/ic_delete"
+      app:tint="@color/alert_blue" />
   </LinearLayout>
 </LinearLayout>

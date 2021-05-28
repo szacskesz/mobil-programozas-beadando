@@ -9,6 +9,7 @@ interface TaskListDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun create(taskList: TaskListEntity)
 
+    @Transaction
     @Query("SELECT * FROM `task-list`")
     suspend fun read() : List<TaskListEntity>
 

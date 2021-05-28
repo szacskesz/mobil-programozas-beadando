@@ -1,4 +1,4 @@
-package hu.szacskesz.mobile.tasklist.tasklists
+package hu.szacskesz.mobile.tasklist.tasks
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class TaskListsViewModel(application: Application, interactors: Interactors) : CommonViewModel(application, interactors) {
+class TasksSpinnerViewModel(application: Application, interactors: Interactors) : CommonViewModel(application, interactors) {
 
     val taskLists: MutableLiveData<List<TaskList>> = MutableLiveData()
 

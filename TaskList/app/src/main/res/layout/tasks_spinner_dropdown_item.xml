@@ -1,0 +1,16 @@
+<TextView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+  android:id="@+id/text_view_name"
+  android:layout_width="match_parent"
+  android:layout_height="?attr/actionBarSize"
+  android:gravity="center_vertical"
+  android:textColor="@color/white"
+  android:ellipsize="end"
+  android:maxLines="1"
+  android:paddingHorizontal="10dp"
+  android:drawSelectorOnTop="true"
+  android:background="@drawable/tasks_spinner_item_background"
+  tools:background="@color/gray"
+  tools:text="Test asdas d asd a sd as dasdasdasd a asda sd" />

@@ -1,11 +1,30 @@
 <resources>
-  <!-- Main -->
-  <string name="main_activity_title">TaskList</string>
-  <string name="todo">Magyar todo</string>
-
   <!-- Menu -->
   <string name="menu_action_task_lists_title">Feladat listák</string>
   <string name="menu_action_settings_title">Beállítások</string>
+
+  <!-- Main -->
+  <string name="tasks_activity_title">TaskList</string>
+  <string name="tasks_item_add_description">Feladat létrehozása</string>
+  <string name="tasks_editor_create_activity_title">Új feladat</string>
+  <string name="tasks_editor_update_activity_title" />
+  <string name="tasks_editor_save_description">Feladat mentése</string>
+  <string name="tasks_editor_delete_description">Feladat törlése</string>
+  <string name="tasks_editor_field_description_label">Mit kell csinálni?</string>
+  <string name="tasks_editor_field_description_hint">Adja meg a feladatot itt</string>
+  <string name="tasks_editor_field_done_label">Feladat befejezve?</string>
+  <string name="tasks_editor_field_due_label">Határidő</string>
+<!--  <string name="tasks_editor_field_due_date_hint">Nincs dátum beállítva</string>--> <!--TODO-->
+<!--  <string name="tasks_editor_field_due_time_hint">Nincs időpont beállítva (egész nap)</string>--> <!--TODO-->
+  <string name="tasks_editor_create_field_list_label">Listához ad</string>
+  <string name="tasks_editor_update_field_list_label">Feladatlista</string>
+  <string name="tasks_delete_dialog_title">Biztos benne?</string>
+  <string name="tasks_delete_dialog_yes_button">Törlés</string>
+  <string name="tasks_delete_dialog_no_button">Mégse</string>
+
+  <string name="task_list_none_name">Egyik sem*</string>
+  <string name="task_list_all_name">Minden*</string>
+  <string name="task_list_finished_name">Befejezett*</string>
 
   <!-- Task lists -->
   <string name="task_lists_activity_title">Feladat listák</string>
