@@ -22,12 +22,14 @@ class ContextUtils(base: Context?) : ContextWrapper(base) {
                 LocaleList.setDefault(localeList)
                 configuration.setLocales(localeList)
             } else {
+                @Suppress("DEPRECATION") //For older phones this is the way
                 configuration.locale = localeToSwitchTo
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                 context = context.createConfigurationContext(configuration)
             } else {
+                @Suppress("DEPRECATION") //For older phones this is the way
                 resources.updateConfiguration(configuration, resources.displayMetrics)
             }
             return ContextUtils(context)

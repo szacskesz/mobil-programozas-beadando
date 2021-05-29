@@ -55,14 +55,10 @@ dependencies {
     implementation applicationDependencies.livedata
     implementation applicationDependencies.viewmodel
     implementation applicationDependencies.lifecycleExt
+    implementation applicationDependencies.fragment
 
-    //TODO
-    implementation 'androidx.fragment:fragment:1.3.4'
     //TODO deps
 //    implementation applicationDependencies.glide
 //    implementation applicationDependencies.legacySupport
-//    implementation applicationDependencies.livedata
-//    implementation applicationDependencies.viewmodel
-//    implementation applicationDependencies.lifecycleExt
 //    implementation applicationDependencies.photoView
 }

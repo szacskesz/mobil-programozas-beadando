@@ -50,7 +50,6 @@
   <string name="settings_category_general_title">General</string>
   <string name="settings_language_title">Language</string>
   <string name="settings_default_task_list_title">Default task list</string>
-  <string name="settings_default_task_list_default_selected_title">All (default)</string>
   <string name="settings_category_notifications_title">Notifications</string>
   <string name="settings_notifications_title">Notifications</string>
   <string name="settings_notifications_on">Enabled</string>

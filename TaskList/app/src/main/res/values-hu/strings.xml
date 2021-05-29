@@ -50,7 +50,6 @@
   <string name="settings_category_general_title">Általános</string>
   <string name="settings_language_title">Nyelv</string>
   <string name="settings_default_task_list_title">Alapértelmezett feladat lista</string>
-  <string name="settings_default_task_list_default_selected_title">Mind (alapértelmezett)</string>
   <string name="settings_category_notifications_title">Értesítések</string>
   <string name="settings_notifications_title">Értesítések</string>
   <string name="settings_notifications_on">Engedélyezve</string>

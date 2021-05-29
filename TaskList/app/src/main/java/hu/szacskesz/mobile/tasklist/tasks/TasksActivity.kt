@@ -8,34 +8,30 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.preference.PreferenceManager
 import hu.szacskesz.mobile.tasklist.R
 import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
 import hu.szacskesz.mobile.tasklist.common.CommonViewModelFactory
+import hu.szacskesz.mobile.tasklist.core.converters.toTask
 import hu.szacskesz.mobile.tasklist.core.domain.Task
 import hu.szacskesz.mobile.tasklist.core.domain.TaskList
 import hu.szacskesz.mobile.tasklist.settings.SettingsActivity
 import hu.szacskesz.mobile.tasklist.tasklists.TaskListsActivity
 import hu.szacskesz.mobile.tasklist.utils.Constants
+import hu.szacskesz.mobile.tasklist.viewmodels.TaskListViewModel
+import hu.szacskesz.mobile.tasklist.viewmodels.TaskWithTaskListNameViewModel
 import kotlinx.android.synthetic.main.tasks_activity.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class TasksActivity : BaseLanguageAwareActivity() {
-    private var selectedTaskListId: MutableLiveData<Int> = MutableLiveData(0)
-    private val taskListsResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        val resultCode = it.resultCode
-        val data = it.data
-
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            selectedTaskListId.postValue(
-                data.getIntExtra(Constants.IntentExtra.key.SELECTED_TASK_LIST_ID, selectedTaskListId.value!!)
-            )
-        }
-    }
+    private var selectedTaskListId: Int = 0
+    private lateinit var taskListViewModel: TaskListViewModel
+    private lateinit var taskWithTaskListNameViewModel: TaskWithTaskListNameViewModel
+    private lateinit var taskListsActivityResult: ActivityResultLauncher<Intent>
+    private lateinit var tasksEditorActivityResult: ActivityResultLauncher<Intent>
 
     private fun addConstantTaskLists(list: List<TaskList>?): List<TaskList>? {
         return if(list == null) null else mutableListOf<TaskList>().apply {
@@ -45,100 +41,109 @@ class TasksActivity : BaseLanguageAwareActivity() {
         }.toList()
     }
 
+    private fun refreshModels() {
+        taskListViewModel.read()
+        taskWithTaskListNameViewModel.read()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tasks_activity)
 
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        val spinnerViewModel: TasksSpinnerViewModel = ViewModelProviders.of(this, CommonViewModelFactory).get(TasksSpinnerViewModel::class.java)
-        selectedTaskListId.observe(this, {
-            val tasksList = this.addConstantTaskLists(spinnerViewModel.taskLists.value)
-            val newIndex = tasksList?.map { item -> item.id }?.indexOf(selectedTaskListId.value)
-            if(newIndex != null) task_list_dropdown.setSelection(newIndex)
-        })
-        spinnerViewModel.taskLists.observe(this, {
+        selectedTaskListId = Integer.parseInt(PreferenceManager
+            .getDefaultSharedPreferences(this)
+            .getString(getString(R.string.settings_default_task_list_key), Constants.TaskList.ALL.id.toString())!!)
+
+        taskListViewModel = ViewModelProvider(this, CommonViewModelFactory).get(TaskListViewModel::class.java)
+        taskWithTaskListNameViewModel = ViewModelProvider(this, CommonViewModelFactory).get(TaskWithTaskListNameViewModel::class.java)
+
+        taskListViewModel.taskLists.observe(this, {
             val tasksList = this.addConstantTaskLists(it)!!
             val spinnerAdapter = TasksSpinnerAdapter(this, R.layout.tasks_spinner_dropdown_item, tasksList)
             spinnerAdapter.setDropDownViewResource(R.layout.tasks_spinner_dropdown_item)
 
             task_list_dropdown.adapter = spinnerAdapter
-            task_list_dropdown.setSelection(tasksList.map { item -> item.id }.indexOf(selectedTaskListId.value))
+            task_list_dropdown.setSelection(tasksList.map { item -> item.id }.indexOf(selectedTaskListId))
         })
         task_list_dropdown.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val item = adapterView.getItemAtPosition(position) as TaskList
-                selectedTaskListId.postValue(item.id)
-                //TODO
+                val shouldRefresh = item.id != selectedTaskListId
+
+                selectedTaskListId = item.id
+
+                if(shouldRefresh) refreshModels()
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>?) {}
         }
-        spinnerViewModel.read()
 
-
-
-
-        val tasksViewModel: TasksViewModel = ViewModelProviders.of(this, CommonViewModelFactory).get(TasksViewModel::class.java)
-        val tasksEditorResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            val resultCode = it.resultCode
-            val data = it.data
-
-            if (resultCode == Activity.RESULT_OK && data != null) {
-                val action = data.getStringExtra(Constants.IntentExtra.key.ACTION)
-                val task = data.getParcelableExtra<Task>(Constants.IntentExtra.key.TASK)!!
-
-                when(action) {
-                    Constants.IntentExtra.value.CREATE_ACTION -> {
-                        tasksViewModel.create(task)
-                    }
-                    Constants.IntentExtra.value.UPDATE_ACTION -> {
-                        tasksViewModel.update(task)
-                    }
-                    Constants.IntentExtra.value.DELETE_ACTION -> {
-                        tasksViewModel.delete(task)
-                    }
-                    else -> throw IllegalStateException("Action value must be one of Constants.IntentExtra.value.*")
-                }
-            }
-        }
         val adapter = TasksAdapter(
             onRowClicked = {
-                tasksEditorResult.launch(
+                tasksEditorActivityResult.launch(
                     Intent(this, TasksEditorActivity::class.java)
-                        .putParcelableArrayListExtra(Constants.IntentExtra.key.TASK_LISTS, ArrayList(spinnerViewModel.taskLists.value))
-                        .putExtra(Constants.IntentExtra.key.SELECTED_TASK_LIST_ID, selectedTaskListId.value)
-                        .putExtra(Constants.IntentExtra.key.TASK_TO_UPDATE, Task(
-                            id = it.id,
-                            description = it.description,
-                            done = it.done,
-                            deadline = it.deadline,
-                            listId = it.listId
-                        ))
+                        .putParcelableArrayListExtra(Constants.IntentExtra.Key.TASK_LISTS, ArrayList(taskListViewModel.taskLists.value))
+                        .putExtra(Constants.IntentExtra.Key.SELECTED_TASK_LIST_ID, selectedTaskListId)
+                        .putExtra(Constants.IntentExtra.Key.TASK_TO_UPDATE, it.toTask())
                 )
             },
             onCheckboxClicked = {
-                tasksViewModel.update(Task(
-                    it.id,
-                    it.description,
-                    !it.done,
-                    it.deadline,
-                    it.listId
-                ))
+                taskWithTaskListNameViewModel.update(it.toTask())
             }
         )
         tasks_recycler_view.adapter  = adapter
 
-        tasksViewModel.tasks.observe(this, { adapter.update(it) })
-        tasksViewModel.read()
+        taskWithTaskListNameViewModel.taskWithTaskListNames.observe(this, {
+            adapter.update(it)
+        })
 
         tasks_item_add_button.setOnClickListener {
-            tasksEditorResult.launch(
+            tasksEditorActivityResult.launch(
                 Intent(this, TasksEditorActivity::class.java)
-                    .putParcelableArrayListExtra(Constants.IntentExtra.key.TASK_LISTS, ArrayList(spinnerViewModel.taskLists.value))
-                    .putExtra(Constants.IntentExtra.key.SELECTED_TASK_LIST_ID, selectedTaskListId.value)
+                    .putParcelableArrayListExtra(Constants.IntentExtra.Key.TASK_LISTS, ArrayList(taskListViewModel.taskLists.value))
+                    .putExtra(Constants.IntentExtra.Key.SELECTED_TASK_LIST_ID, selectedTaskListId)
             )
         }
+
+        tasksEditorActivityResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val resultCode = it.resultCode
+            val data = it.data
+
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val action = data.getStringExtra(Constants.IntentExtra.Key.ACTION)
+                val task = data.getParcelableExtra<Task>(Constants.IntentExtra.Key.TASK)!!
+
+                when(action) {
+                    Constants.IntentExtra.Value.CREATE_ACTION -> {
+                        taskWithTaskListNameViewModel.create(task)
+                    }
+                    Constants.IntentExtra.Value.UPDATE_ACTION -> {
+                        taskWithTaskListNameViewModel.update(task)
+                    }
+                    Constants.IntentExtra.Value.DELETE_ACTION -> {
+                        taskWithTaskListNameViewModel.delete(task)
+                    }
+                    else -> throw IllegalStateException("Action value must be one of Constants.IntentExtra.value.*")
+                }
+            }
+
+            refreshModels()
+        }
+
+        taskListsActivityResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            val resultCode = it.resultCode
+            val data = it.data
+
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                selectedTaskListId = data.getIntExtra(Constants.IntentExtra.Key.SELECTED_TASK_LIST_ID, selectedTaskListId)
+            }
+
+            refreshModels()
+        }
+
+        refreshModels()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -149,12 +154,15 @@ class TasksActivity : BaseLanguageAwareActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_action_task_lists -> {
-                taskListsResult.launch(
+                taskListsActivityResult.launch(
                     Intent(this, TaskListsActivity::class.java)
                 )
             }
             R.id.menu_action_settings -> {
-                this.startActivity(Intent(this, SettingsActivity::class.java))
+                this.startActivity(
+                    Intent(this, SettingsActivity::class.java)
+                        .putParcelableArrayListExtra(Constants.IntentExtra.Key.TASK_LISTS, ArrayList(taskListViewModel.taskLists.value))
+                )
             }
             else -> return super.onOptionsItemSelected(item)
         }

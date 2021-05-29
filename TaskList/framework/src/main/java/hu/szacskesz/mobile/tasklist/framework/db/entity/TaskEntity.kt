@@ -3,7 +3,21 @@ package hu.szacskesz.mobile.tasklist.framework.db.entity
 import androidx.room.*
 import java.util.*
 
-@Entity(tableName = "task")
+
+@Entity(
+    tableName = "task",
+    foreignKeys = [
+        ForeignKey(entity = TaskListEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["list_id"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE,
+        )
+    ],
+    indices = [
+        Index(value = ["list_id"])
+    ]
+)
 data class TaskEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "description") val description : String,

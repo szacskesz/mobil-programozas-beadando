@@ -1,13 +1,16 @@
 package hu.szacskesz.mobile.tasklist.framework.db.entity
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Entity(tableName = "task-list")
+
+@Entity(tableName = "task_list")
 data class TaskListEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "name") val name : String,
 )
 
-//TODO join tasks entity
+data class TaskListWithTasksCountEntity(
+    @Embedded val taskList: TaskListEntity,
+    @ColumnInfo(name = "task_count") val tasksCount: Int,
+    @ColumnInfo(name = "overdue_task_count") val overdueTasksCount: Int,
+)

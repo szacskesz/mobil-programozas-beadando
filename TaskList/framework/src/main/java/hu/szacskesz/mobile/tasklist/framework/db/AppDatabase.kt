@@ -5,11 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import hu.szacskesz.mobile.tasklist.framework.db.converters.RoomTypeConverters
 import hu.szacskesz.mobile.tasklist.framework.db.dao.TaskDao
 import hu.szacskesz.mobile.tasklist.framework.db.dao.TaskListDao
 import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskEntity
 import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskListEntity
-import hu.szacskesz.mobile.tasklist.framework.db.utils.RoomTypeConverters
+
 
 @Database(
     entities = [

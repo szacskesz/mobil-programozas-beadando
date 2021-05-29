@@ -9,18 +9,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.color
 import androidx.recyclerview.widget.RecyclerView
 import hu.szacskesz.mobile.tasklist.R
-import hu.szacskesz.mobile.tasklist.core.domain.TaskList
+import hu.szacskesz.mobile.tasklist.core.domain.TaskListWithTasksCount
 import kotlinx.android.synthetic.main.task_lists_item.view.*
 
 
-//TODO
-data class D (val name: String, val tasksCount: Int, val overdueTasksCount: Int)
-
 class TaskListsAdapter (
-    private val taskLists: MutableList<TaskList> = mutableListOf(),
-    private val onOpenClicked: (TaskList) -> Unit,
-    private val onEditClicked: (TaskList) -> Unit,
-    private val onDeleteClicked: (TaskList) -> Unit,
+    private val taskLists: MutableList<TaskListWithTasksCount> = mutableListOf(),
+    private val onOpenClicked: (TaskListWithTasksCount) -> Unit,
+    private val onEditClicked: (TaskListWithTasksCount) -> Unit,
+    private val onDeleteClicked: (TaskListWithTasksCount) -> Unit,
 ) : RecyclerView.Adapter<TaskListsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
@@ -37,19 +34,18 @@ class TaskListsAdapter (
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val context = viewHolder.itemView.context
         val taskList = taskLists[position]
-        val row = D(taskLists[position].name, 0, 0) //TODO tasks, overdue tasks text
 
-        viewHolder.nameTextView.text = row.name
+        viewHolder.nameTextView.text = taskList.name
 
         val tasksText = SpannableStringBuilder()
-        if(row.tasksCount > 0) {
+        if(taskList.tasksCount > 0) {
             tasksText.color(ContextCompat.getColor(context, R.color.alert_blue))
-            { append(context.getString(R.string.task_lists_item_tasks_count, row.tasksCount)) }
+            { append(context.getString(R.string.task_lists_item_tasks_count, taskList.tasksCount)) }
 
-            if(row.overdueTasksCount > 0) {
+            if(taskList.overdueTasksCount > 0) {
                 tasksText.append(" ")
                 tasksText.color(ContextCompat.getColor(context, R.color.alert_red))
-                { append(context.getString(R.string.task_lists_item_overdue_tasks_count, row.overdueTasksCount)) }
+                { append(context.getString(R.string.task_lists_item_overdue_tasks_count, taskList.overdueTasksCount)) }
             }
         } else {
             tasksText.color(ContextCompat.getColor(context, R.color.gray))
@@ -65,7 +61,7 @@ class TaskListsAdapter (
 
     override fun getItemCount() = taskLists.size
 
-    fun update(newTaskLists: List<TaskList>) {
+    fun update(newTaskLists: List<TaskListWithTasksCount>) {
         taskLists.clear()
         taskLists.addAll(newTaskLists)
 

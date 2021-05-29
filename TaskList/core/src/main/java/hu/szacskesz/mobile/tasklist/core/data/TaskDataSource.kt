@@ -4,6 +4,7 @@ import hu.szacskesz.mobile.tasklist.core.domain.Task
 import hu.szacskesz.mobile.tasklist.core.domain.TaskWithTaskList
 import hu.szacskesz.mobile.tasklist.core.domain.TaskWithTaskListName
 
+
 interface TaskDataSource {
     suspend fun create(task: Task)
     suspend fun read() : List<Task>

@@ -12,6 +12,7 @@ data class Interactors(
 
     val createTaskList: CreateTaskList,
     val readTaskLists: ReadTaskLists,
+    val readTaskListWithTasksCounts: ReadTaskListWithTasksCounts,
     val updateTaskList: UpdateTaskList,
     val deleteTaskList: DeleteTaskList,
 )

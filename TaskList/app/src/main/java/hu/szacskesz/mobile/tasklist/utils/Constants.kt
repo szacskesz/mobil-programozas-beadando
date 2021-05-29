@@ -19,14 +19,14 @@ object Constants {
     }
 
     object IntentExtra {
-        object key {
+        object Key {
             const val TASK_LISTS = "taskLists"
             const val SELECTED_TASK_LIST_ID = "selectedTaskListId"
             const val TASK_TO_UPDATE = "taskToUpdate"
             const val ACTION = "action"
             const val TASK = "task"
         }
-        object value {
+        object Value {
             const val CREATE_ACTION = "create"
             const val UPDATE_ACTION = "update"
             const val DELETE_ACTION = "delete"

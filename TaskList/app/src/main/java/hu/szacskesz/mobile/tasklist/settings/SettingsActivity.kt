@@ -1,17 +1,25 @@
 package hu.szacskesz.mobile.tasklist.settings
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.preference.ListPreference
+import androidx.preference.PreferenceManager
 import com.takisoft.preferencex.PreferenceFragmentCompat
 import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
 import hu.szacskesz.mobile.tasklist.R
+import hu.szacskesz.mobile.tasklist.core.domain.TaskList
+import hu.szacskesz.mobile.tasklist.utils.Constants
 
 
 class SettingsActivity : BaseLanguageAwareActivity() {
 
+    private lateinit var taskLists: List<TaskList>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
+
+        taskLists = intent.getParcelableArrayListExtra(Constants.IntentExtra.Key.TASK_LISTS)!!
 
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -26,24 +34,30 @@ class SettingsActivity : BaseLanguageAwareActivity() {
     class SettingsFragment : PreferenceFragmentCompat() {
         override fun onCreatePreferencesFix(savedInstanceState: Bundle?, rootKey: String? ) {
             setPreferencesFromResource(R.xml.preferences, rootKey)
+            val sharedPref: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+            val taskLists = (activity as SettingsActivity?)?.taskLists ?: listOf()
 
             val languagePref: ListPreference? = findPreference(getString(R.string.settings_language_key))
-            languagePref?.setOnPreferenceChangeListener { preference, newValue ->
+            languagePref?.setOnPreferenceChangeListener { _, _ ->
                 activity?.recreate()
                 return@setOnPreferenceChangeListener true
             }
 
             val defaultTaskListListPreference: ListPreference? = findPreference(getString(R.string.settings_default_task_list_key))
-//            TODO get task-lists (names, ids), set default
-            defaultTaskListListPreference?.entries = arrayOf<CharSequence>(
-                getString(R.string.settings_default_task_list_default_selected_title),
-                // TODO
+            defaultTaskListListPreference?.entries =
+                mutableListOf<String>().apply {
+                    add(getString(Constants.TaskList.ALL.name))
+                    addAll(taskLists.map{ it.name })
+                }.toTypedArray()
+            defaultTaskListListPreference?.entryValues =
+                mutableListOf<String>().apply {
+                    add(Constants.TaskList.ALL.id.toString())
+                    addAll(taskLists.map{ it.id.toString() })
+                }.toTypedArray()
+            defaultTaskListListPreference?.value = sharedPref.getString(
+                getString(R.string.settings_default_task_list_key),
+                Constants.TaskList.ALL.id.toString()
             )
-            defaultTaskListListPreference?.entryValues = arrayOf<CharSequence>(
-                getString(R.string.settings_default_task_list_values_default),
-                // TODO
-            )
-            defaultTaskListListPreference?.setDefaultValue(getString(R.string.settings_default_task_list_values_default))
         }
     }
 }

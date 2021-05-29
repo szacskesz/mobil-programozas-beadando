@@ -8,7 +8,6 @@ import hu.szacskesz.mobile.tasklist.R
 import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
 import hu.szacskesz.mobile.tasklist.core.domain.Task
 import hu.szacskesz.mobile.tasklist.core.domain.TaskList
-import hu.szacskesz.mobile.tasklist.tasklists.TaskListsDeleteDialogFragment
 import hu.szacskesz.mobile.tasklist.utils.Constants
 import kotlinx.android.synthetic.main.tasks_editor_activity.*
 
@@ -22,12 +21,12 @@ class TasksEditorActivity : BaseLanguageAwareActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val taskLists: List<TaskList> = intent.getParcelableArrayListExtra(Constants.IntentExtra.key.TASK_LISTS)!!
-        var selectedTaskListId: Int  = intent.getIntExtra(Constants.IntentExtra.key.SELECTED_TASK_LIST_ID, Constants.TaskList.NONE.id)
+        val taskLists: List<TaskList> = intent.getParcelableArrayListExtra(Constants.IntentExtra.Key.TASK_LISTS)!!
+        var selectedTaskListId: Int  = intent.getIntExtra(Constants.IntentExtra.Key.SELECTED_TASK_LIST_ID, Constants.TaskList.NONE.id)
         if(selectedTaskListId == Constants.TaskList.ALL.id || selectedTaskListId == Constants.TaskList.FINISHED.id) {
             selectedTaskListId = Constants.TaskList.NONE.id
         }
-        val taskToUpdate: Task? = intent.getParcelableExtra(Constants.IntentExtra.key.TASK_TO_UPDATE)
+        val taskToUpdate: Task? = intent.getParcelableExtra(Constants.IntentExtra.Key.TASK_TO_UPDATE)
 
         tasks_editor_activity_title.text = getString(
             if(taskToUpdate == null) R.string.tasks_editor_create_activity_title
@@ -38,19 +37,20 @@ class TasksEditorActivity : BaseLanguageAwareActivity() {
             val isFormValid = tasks_editor_field_description.text.isNotEmpty()
 
             if(isFormValid) {
+                val listId = (tasks_editor_field_list_dropdown.selectedItem as TaskList).id
                 setResult(
                     Activity.RESULT_OK,
                     Intent()
-                        .putExtra(Constants.IntentExtra.key.ACTION,
-                            if(taskToUpdate == null) Constants.IntentExtra.value.CREATE_ACTION
-                            else Constants.IntentExtra.value.UPDATE_ACTION
+                        .putExtra(Constants.IntentExtra.Key.ACTION,
+                            if(taskToUpdate == null) Constants.IntentExtra.Value.CREATE_ACTION
+                            else Constants.IntentExtra.Value.UPDATE_ACTION
                         )
-                        .putExtra(Constants.IntentExtra.key.TASK, Task(
+                        .putExtra(Constants.IntentExtra.Key.TASK, Task(
                             id = taskToUpdate?.id ?: 0,
                             description = tasks_editor_field_description.text.toString(),
                             done = tasks_editor_field_done.isChecked,
-                            deadline = null, //TODO
-                            listId = (tasks_editor_field_list_dropdown.selectedItem as TaskList).id
+                            deadline = null, //TODO get deadline value from the form
+                            listId = if(listId == Constants.TaskList.NONE.id) null else listId
                         ))
                 )
                 finish()
@@ -65,8 +65,8 @@ class TasksEditorActivity : BaseLanguageAwareActivity() {
                         setResult(
                             Activity.RESULT_OK,
                             Intent()
-                                .putExtra(Constants.IntentExtra.key.ACTION, Constants.IntentExtra.value.DELETE_ACTION)
-                                .putExtra(Constants.IntentExtra.key.TASK, taskToUpdate!!)
+                                .putExtra(Constants.IntentExtra.Key.ACTION, Constants.IntentExtra.Value.DELETE_ACTION)
+                                .putExtra(Constants.IntentExtra.Key.TASK, taskToUpdate!!)
                         )
                         finish()
                     }

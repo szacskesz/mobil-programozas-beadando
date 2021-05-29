@@ -1,9 +1,10 @@
-package hu.szacskesz.mobile.tasklist.tasklists
+package hu.szacskesz.mobile.tasklist.viewmodels
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import hu.szacskesz.mobile.tasklist.common.CommonViewModel
-import hu.szacskesz.mobile.tasklist.core.domain.TaskList
+import hu.szacskesz.mobile.tasklist.core.domain.Task
+import hu.szacskesz.mobile.tasklist.core.domain.TaskWithTaskListName
 import hu.szacskesz.mobile.tasklist.framework.Interactors
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -11,39 +12,39 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class TaskListsViewModel(application: Application, interactors: Interactors) : CommonViewModel(application, interactors) {
+class TaskWithTaskListNameViewModel(application: Application, interactors: Interactors) : CommonViewModel(application, interactors) {
 
-    val taskLists: MutableLiveData<List<TaskList>> = MutableLiveData()
+    val taskWithTaskListNames: MutableLiveData<List<TaskWithTaskListName>> = MutableLiveData()
 
     fun read() {
         GlobalScope.launch {
-            val docs = interactors.readTaskLists()
-            taskLists.postValue(docs)
+            val docs = interactors.readTaskWithTaskListNames()
+            taskWithTaskListNames.postValue(docs)
         }
     }
 
-    fun create(taskList: TaskList) {
+    fun create(task: Task) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                interactors.createTaskList(taskList)
+                interactors.createTask(task)
             }
             read()
         }
     }
 
-    fun update(taskList: TaskList) {
+    fun update(task: Task) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                interactors.updateTaskList(taskList)
+                interactors.updateTask(task)
             }
             read()
         }
     }
 
-    fun delete(taskList: TaskList) {
+    fun delete(task: Task) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                interactors.deleteTaskList(taskList)
+                interactors.deleteTask(task)
             }
             read()
         }

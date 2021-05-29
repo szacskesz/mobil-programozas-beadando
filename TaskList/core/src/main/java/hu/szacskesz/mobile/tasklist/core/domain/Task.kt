@@ -2,7 +2,8 @@ package hu.szacskesz.mobile.tasklist.core.domain
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import java.util.Date
+import java.util.*
+
 
 @Parcelize
 data class Task(
@@ -11,15 +12,6 @@ data class Task(
     val done: Boolean,
     val deadline: Date?, // TODO
     val listId: Int?
-) : Parcelable
-
-@Parcelize
-data class TaskWithTaskList(
-    val id: Int = 0,
-    val description: String,
-    val done: Boolean,
-    val deadline: Date?, // TODO
-    val list: TaskList?
 ) : Parcelable
 
 @Parcelize
@@ -32,3 +24,11 @@ data class TaskWithTaskListName(
     val listName: String?
 ) : Parcelable
 
+@Parcelize
+data class TaskWithTaskList(
+    val id: Int = 0,
+    val description: String,
+    val done: Boolean,
+    val deadline: Date?, // TODO
+    val list: TaskList?
+) : Parcelable

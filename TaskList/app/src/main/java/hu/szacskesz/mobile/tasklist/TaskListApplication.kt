@@ -9,6 +9,7 @@ import hu.szacskesz.mobile.tasklist.framework.Interactors
 import hu.szacskesz.mobile.tasklist.framework.db.datasource.RoomTaskDataSource
 import hu.szacskesz.mobile.tasklist.framework.db.datasource.RoomTaskListDataSource
 
+
 class TaskListApplication : Application() {
 
     override fun onCreate() {
@@ -28,6 +29,7 @@ class TaskListApplication : Application() {
                 DeleteTask(taskRepository),
                 CreateTaskList(taskListRepository),
                 ReadTaskLists(taskListRepository),
+                ReadTaskListWithTasksCounts(taskListRepository),
                 UpdateTaskList(taskListRepository),
                 DeleteTaskList(taskListRepository),
             )

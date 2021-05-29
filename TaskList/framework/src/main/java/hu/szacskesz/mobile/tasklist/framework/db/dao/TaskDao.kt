@@ -4,6 +4,7 @@ import androidx.room.*
 import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskEntity
 import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskWithTaskListEntity
 
+
 @Dao
 interface TaskDao {
 
@@ -16,7 +17,7 @@ interface TaskDao {
 
     @Transaction
     @Query("SELECT * FROM `task`")
-    suspend fun readWithTaskListEntity() : List<TaskWithTaskListEntity>
+    suspend fun readWithTaskList() : List<TaskWithTaskListEntity>
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     suspend fun update(task: TaskEntity)
