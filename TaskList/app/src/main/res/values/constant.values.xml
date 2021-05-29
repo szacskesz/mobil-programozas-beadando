@@ -10,4 +10,8 @@
     <string name="settings_vibration_key">vibration</string>
     <string name="settings_day_summary_key">day_summary</string>
     <string name="settings_day_summary_time_key">day_summary_time</string>
+    <string name="settings_language_values_default" translatable="false">en</string>
+    <string name="channel_id">TaskListChannel</string>
+    <integer name="notification_summary_id">1</integer>
+    <integer name="notification_task_id">2</integer>
 </resources>

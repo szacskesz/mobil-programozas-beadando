@@ -34,12 +34,6 @@ ext {
     // framework dependencies version
     room_version = "2.3.0"
 
-    //TODO
-//    legacy_support_version = "1.0.0"
-//    photo_view_version = "2.3.0"
-//    glide_version = "4.9.0"
-//    photo_view_version = "2.3.0"
-
     common = [
         kotlinStdLib:
             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
@@ -58,11 +52,6 @@ ext {
         viewmodel:                          "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
         lifecycleExt:                       "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions_version",
         fragment:                           "androidx.fragment:fragment:$fragment_version",
-
-            //TODO
-//        photoView:                          "com.github.chrisbanes:PhotoView:$photo_view_version",
-//        glide:          "com.github.bumptech.glide:glide:$glide_version",
-//        legacySupport:      "androidx.legacy:legacy-support-v4:$legacy_support_version",
     ]
 
     coreModule = [

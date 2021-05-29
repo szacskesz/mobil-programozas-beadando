@@ -3,6 +3,8 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   package="hu.szacskesz.mobile.tasklist">
 
+  <uses-permission android:name="android.permission.VIBRATE" />
+
   <application
     android:name=".TaskListApplication"
     android:allowBackup="true"
@@ -38,6 +40,8 @@
       android:name=".tasks.TasksEditorActivity"
       android:parentActivityName=".tasks.TasksActivity"
       android:theme="@style/Theme.TaskList.NoActionBar" />
+
+    <receiver android:name=".service.NotificationBroadcastReceiver" />
 
   </application>
 

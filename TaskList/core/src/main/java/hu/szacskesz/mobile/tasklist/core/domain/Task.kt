@@ -10,7 +10,7 @@ data class Task(
     val id: Int = 0,
     val description: String,
     val done: Boolean,
-    val deadline: Date?, // TODO
+    val deadline: Date?,
     val listId: Int?
 ) : Parcelable
 
@@ -19,7 +19,7 @@ data class TaskWithTaskListName(
     val id: Int = 0,
     val description: String,
     val done: Boolean,
-    val deadline: Date?, // TODO
+    val deadline: Date?,
     val listId: Int?,
     val listName: String?
 ) : Parcelable
@@ -29,6 +29,6 @@ data class TaskWithTaskList(
     val id: Int = 0,
     val description: String,
     val done: Boolean,
-    val deadline: Date?, // TODO
+    val deadline: Date?,
     val list: TaskList?
 ) : Parcelable

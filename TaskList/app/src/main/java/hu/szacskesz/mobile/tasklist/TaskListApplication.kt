@@ -1,6 +1,10 @@
 package hu.szacskesz.mobile.tasklist
 
 import android.app.Application
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import hu.szacskesz.mobile.tasklist.common.CommonViewModelFactory
 import hu.szacskesz.mobile.tasklist.core.data.TaskListRepository
 import hu.szacskesz.mobile.tasklist.core.data.TaskRepository
@@ -8,6 +12,8 @@ import hu.szacskesz.mobile.tasklist.core.interactors.*
 import hu.szacskesz.mobile.tasklist.framework.Interactors
 import hu.szacskesz.mobile.tasklist.framework.db.datasource.RoomTaskDataSource
 import hu.szacskesz.mobile.tasklist.framework.db.datasource.RoomTaskListDataSource
+import hu.szacskesz.mobile.tasklist.service.NOTIFICATION_CHANNEL_ID
+import hu.szacskesz.mobile.tasklist.service.NOTIFICATION_CHANNEL_NAME
 
 
 class TaskListApplication : Application() {
@@ -34,5 +40,12 @@ class TaskListApplication : Application() {
                 DeleteTaskList(taskListRepository),
             )
         )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val notificationChannel = NotificationChannel(NOTIFICATION_CHANNEL_ID, NOTIFICATION_CHANNEL_NAME, importance)
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
     }
 }

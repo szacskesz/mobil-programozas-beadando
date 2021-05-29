@@ -1,4 +1,8 @@
 <resources>
+  <!-- General -->
+  <string name="channel_name">TaskList</string>
+  <string name="channel_description">Értesítések a TaskList alkalamzástól.</string>
+
   <!-- Menu -->
   <string name="menu_action_task_lists_title">Feladat listák</string>
   <string name="menu_action_settings_title">Beállítások</string>

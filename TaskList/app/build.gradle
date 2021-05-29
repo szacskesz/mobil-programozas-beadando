@@ -56,9 +56,4 @@ dependencies {
     implementation applicationDependencies.viewmodel
     implementation applicationDependencies.lifecycleExt
     implementation applicationDependencies.fragment
-
-    //TODO deps
-//    implementation applicationDependencies.glide
-//    implementation applicationDependencies.legacySupport
-//    implementation applicationDependencies.photoView
 }
