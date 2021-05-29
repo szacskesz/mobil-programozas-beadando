@@ -14,8 +14,10 @@
   <string name="tasks_editor_field_description_hint">Enter task here</string>
   <string name="tasks_editor_field_done_label">Task finished?</string>
   <string name="tasks_editor_field_due_label">Due date</string>
-<!--  <string name="tasks_editor_field_due_date_hint">Date not set</string>--> <!--TODO-->
-<!--  <string name="tasks_editor_field_due_time_hint">Time not set (all day)</string>--> <!--TODO-->
+  <string name="tasks_editor_field_due_date_hint">Date not set</string>
+  <string name="tasks_editor_field_due_time_hint">Time not set (all day)</string>
+  <string name="tasks_editor_picker_dialog_yes_button">Ok</string>
+  <string name="tasks_editor_picker_dialog_no_button">Cancel</string>
   <string name="tasks_editor_create_field_list_label">Add to list</string>
   <string name="tasks_editor_update_field_list_label">Task list</string>
   <string name="tasks_delete_dialog_title">Are you sure</string>

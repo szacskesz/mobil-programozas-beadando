@@ -14,8 +14,10 @@
   <string name="tasks_editor_field_description_hint">Adja meg a feladatot itt</string>
   <string name="tasks_editor_field_done_label">Feladat befejezve?</string>
   <string name="tasks_editor_field_due_label">Határidő</string>
-<!--  <string name="tasks_editor_field_due_date_hint">Nincs dátum beállítva</string>--> <!--TODO-->
-<!--  <string name="tasks_editor_field_due_time_hint">Nincs időpont beállítva (egész nap)</string>--> <!--TODO-->
+  <string name="tasks_editor_field_due_date_hint">Nincs dátum beállítva</string>
+  <string name="tasks_editor_field_due_time_hint">Nincs időpont beállítva (egész nap)</string>
+  <string name="tasks_editor_picker_dialog_yes_button">Ok</string>
+  <string name="tasks_editor_picker_dialog_no_button">Mégse</string>
   <string name="tasks_editor_create_field_list_label">Listához ad</string>
   <string name="tasks_editor_update_field_list_label">Feladatlista</string>
   <string name="tasks_delete_dialog_title">Biztos benne?</string>

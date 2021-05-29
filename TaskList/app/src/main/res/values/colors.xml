@@ -10,7 +10,7 @@
   <color name="gray">#FF666666</color>
   <color name="light_gray">#FFEEEEEE</color>
   <color name="white">#FFFFFFFF</color>
-  <color name="default_spinner">#00FFFFFF</color>
+  <color name="default_spinner">#00000000</color>
   <color name="default_spinner_active">#22000000</color>
   <color name="alert_red">#FFBB0000</color>
   <color name="alert_blue">#FF0277bd</color>
