@@ -19,16 +19,16 @@ class RoomTaskDataSource(val context: Context) : TaskDataSource {
         return taskDao.create( task.toEntity() )
     }
 
-    override suspend fun read(): List<Task> {
-        return taskDao.read().map { it.toDto() }
+    override suspend fun read(listId: Int?, isFinished: Boolean?): List<Task> {
+        return taskDao.read(listId, isFinished).map { it.toDto() }
     }
 
-    override suspend fun readWithTaskList(): List<TaskWithTaskList> {
-        return taskDao.readWithTaskList().map { it.toDto() }
+    override suspend fun readWithTaskList(listId: Int?, isFinished: Boolean?): List<TaskWithTaskList> {
+        return taskDao.readWithTaskList(listId, isFinished).map { it.toDto() }
     }
 
-    override suspend fun readWithTaskListName(): List<TaskWithTaskListName> {
-        return taskDao.readWithTaskList().map { it.toDto().toTaskWithTaskListName() }
+    override suspend fun readWithTaskListName(listId: Int?, isFinished: Boolean?): List<TaskWithTaskListName> {
+        return taskDao.readWithTaskList(listId, isFinished).map { it.toDto().toTaskWithTaskListName() }
     }
 
     override suspend fun update(task: Task)  {

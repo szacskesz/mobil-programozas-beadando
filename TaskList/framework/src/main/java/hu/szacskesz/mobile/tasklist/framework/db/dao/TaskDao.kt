@@ -12,12 +12,20 @@ interface TaskDao {
     suspend fun create(task: TaskEntity)
 
     @Transaction
-    @Query("SELECT * FROM `task`")
-    suspend fun read() : List<TaskEntity>
+    @Query("""
+        SELECT * FROM `task` WHERE
+            (:listId IS NUll OR `task`.list_id = :listId) AND
+            (:isFinished IS NULL OR `task`.done = :isFinished)
+    """)
+    suspend fun read(listId: Int?, isFinished: Boolean?) : List<TaskEntity>
 
     @Transaction
-    @Query("SELECT * FROM `task`")
-    suspend fun readWithTaskList() : List<TaskWithTaskListEntity>
+    @Query("""
+        SELECT * FROM `task` WHERE
+            (:listId IS NUll OR `task`.list_id = :listId) AND
+            (:isFinished IS NULL OR `task`.done = :isFinished)
+    """)
+    suspend fun readWithTaskList(listId: Int?, isFinished: Boolean?) : List<TaskWithTaskListEntity>
 
     @Update(onConflict = OnConflictStrategy.ABORT)
     suspend fun update(task: TaskEntity)

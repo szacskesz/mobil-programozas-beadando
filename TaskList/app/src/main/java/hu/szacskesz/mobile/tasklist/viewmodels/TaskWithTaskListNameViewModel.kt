@@ -16,9 +16,15 @@ class TaskWithTaskListNameViewModel(application: Application, interactors: Inter
 
     val taskWithTaskListNames: MutableLiveData<List<TaskWithTaskListName>> = MutableLiveData()
 
-    fun read() {
+    private var listId: Int? = null
+    private var isFinished: Boolean? = null
+
+    fun read(listId: Int?, isFinished: Boolean?) {
+        this.listId = listId
+        this.isFinished = isFinished
+
         GlobalScope.launch {
-            val docs = interactors.readTaskWithTaskListNames()
+            val docs = interactors.readTaskWithTaskListNames(listId, isFinished)
             taskWithTaskListNames.postValue(docs)
         }
     }
@@ -28,7 +34,8 @@ class TaskWithTaskListNameViewModel(application: Application, interactors: Inter
             withContext(Dispatchers.IO) {
                 interactors.createTask(task)
             }
-            read()
+
+            read(listId, isFinished)
         }
     }
 
@@ -37,7 +44,8 @@ class TaskWithTaskListNameViewModel(application: Application, interactors: Inter
             withContext(Dispatchers.IO) {
                 interactors.updateTask(task)
             }
-            read()
+
+            read(listId, isFinished)
         }
     }
 
@@ -46,7 +54,8 @@ class TaskWithTaskListNameViewModel(application: Application, interactors: Inter
             withContext(Dispatchers.IO) {
                 interactors.deleteTask(task)
             }
-            read()
+
+            read(listId, isFinished)
         }
     }
 }

@@ -43,7 +43,13 @@ class TasksActivity : BaseLanguageAwareActivity() {
 
     private fun refreshModels() {
         taskListViewModel.read()
-        taskWithTaskListNameViewModel.read()
+
+        val listId = if(selectedTaskListId == Constants.TaskList.ALL.id
+            || selectedTaskListId == Constants.TaskList.NONE.id
+            || selectedTaskListId == Constants.TaskList.FINISHED.id) null
+            else selectedTaskListId
+        val isFinished = selectedTaskListId == Constants.TaskList.FINISHED.id
+        taskWithTaskListNameViewModel.read(listId, isFinished)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,7 +96,7 @@ class TasksActivity : BaseLanguageAwareActivity() {
                 )
             },
             onCheckboxClicked = {
-                taskWithTaskListNameViewModel.update(it.toTask())
+                taskWithTaskListNameViewModel.update(it.copy(done = !it.done).toTask())
             }
         )
         tasks_recycler_view.adapter  = adapter

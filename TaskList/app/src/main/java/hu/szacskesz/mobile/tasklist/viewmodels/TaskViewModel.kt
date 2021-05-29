@@ -15,9 +15,15 @@ class TaskViewModel(application: Application, interactors: Interactors) : Common
 
     val tasks: MutableLiveData<List<Task>> = MutableLiveData()
 
-    fun read() {
+    private var listId: Int? = null
+    private var isFinished: Boolean? = null
+
+    fun read(listId: Int?, isFinished: Boolean?) {
+        this.listId = listId
+        this.isFinished = isFinished
+
         GlobalScope.launch {
-            val docs = interactors.readTasks()
+            val docs = interactors.readTasks(listId, isFinished)
             tasks.postValue(docs)
         }
     }
@@ -27,7 +33,8 @@ class TaskViewModel(application: Application, interactors: Interactors) : Common
             withContext(Dispatchers.IO) {
                 interactors.createTask(task)
             }
-            read()
+
+            read(listId, isFinished)
         }
     }
 
@@ -36,7 +43,8 @@ class TaskViewModel(application: Application, interactors: Interactors) : Common
             withContext(Dispatchers.IO) {
                 interactors.updateTask(task)
             }
-            read()
+
+            read(listId, isFinished)
         }
     }
 
@@ -45,7 +53,8 @@ class TaskViewModel(application: Application, interactors: Interactors) : Common
             withContext(Dispatchers.IO) {
                 interactors.deleteTask(task)
             }
-            read()
+
+            read(listId, isFinished)
         }
     }
 }
