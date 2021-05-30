@@ -16,10 +16,11 @@ class SettingsActivity : BaseLanguageAwareActivity() {
     private lateinit var taskLists: List<TaskList>
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Solves UninitialisedPropertyAccess in fragment after activity recreate
+        taskLists = intent.getParcelableArrayListExtra(Constants.IntentExtra.Key.TASK_LISTS)!!
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
-
-        taskLists = intent.getParcelableArrayListExtra(Constants.IntentExtra.Key.TASK_LISTS)!!
 
         if (savedInstanceState == null) {
             supportFragmentManager

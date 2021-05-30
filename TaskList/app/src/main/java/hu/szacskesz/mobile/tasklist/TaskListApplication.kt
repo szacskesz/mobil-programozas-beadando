@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import androidx.appcompat.app.AppCompatDelegate
 import hu.szacskesz.mobile.tasklist.common.CommonViewModelFactory
 import hu.szacskesz.mobile.tasklist.core.data.TaskListRepository
 import hu.szacskesz.mobile.tasklist.core.data.TaskRepository
@@ -20,6 +21,8 @@ class TaskListApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val taskRepository = TaskRepository(RoomTaskDataSource(this))
         val taskListRepository = TaskListRepository(RoomTaskListDataSource(this))
