@@ -18,6 +18,11 @@ object Constants {
         }
     }
 
+    object Notification {
+        const val CHANNEL_ID = "TaskListNotificationChannel"
+        const val CHANNEL_NAME = "TaskList's notification channel"
+    }
+
     object IntentExtra {
         object Key {
             const val TASK_LISTS = "taskLists"
@@ -25,11 +30,13 @@ object Constants {
             const val TASK_TO_UPDATE = "taskToUpdate"
             const val ACTION = "action"
             const val TASK = "task"
+            const val NOTIFICATION_ID = "notification_id"
         }
         object Value {
             const val CREATE_ACTION = "create"
             const val UPDATE_ACTION = "update"
             const val DELETE_ACTION = "delete"
+            const val NOTIFICATION_ID_SUMMARY = -1
         }
     }
 }

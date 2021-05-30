@@ -9,6 +9,7 @@ import hu.szacskesz.mobile.tasklist.core.domain.TaskWithTaskListName
 import hu.szacskesz.mobile.tasklist.framework.db.AppDatabase
 import hu.szacskesz.mobile.tasklist.framework.db.converters.toDto
 import hu.szacskesz.mobile.tasklist.framework.db.converters.toEntity
+import java.util.*
 
 
 class RoomTaskDataSource(val context: Context) : TaskDataSource {
@@ -29,6 +30,10 @@ class RoomTaskDataSource(val context: Context) : TaskDataSource {
 
     override suspend fun readWithTaskListName(listId: Int?, isFinished: Boolean?): List<TaskWithTaskListName> {
         return taskDao.readWithTaskList(listId, isFinished).map { it.toDto().toTaskWithTaskListName() }
+    }
+
+    override suspend fun getTaskCount(from: Date, to: Date, isOverdue: Boolean): Int {
+        return taskDao.getTaskCount(from, to, Date(), isOverdue)
     }
 
     override suspend fun update(task: Task)  {

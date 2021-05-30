@@ -25,7 +25,7 @@ interface TaskListDao {
             ) as `taskCount`
             ON `task_list`.id = `taskCount`.list_id
             LEFT JOIN (
-                SELECT list_id, COUNT(*) as `count` FROM `task` WHERE `task`.deadline < :nowDate GROUP BY `task`.list_id
+                SELECT list_id, COUNT(*) as `count` FROM `task` WHERE NOT `task`.done AND `task`.deadline < :nowDate GROUP BY `task`.list_id
             ) as `overdueTaskCount`
             ON `task_list`.id = `overdueTaskCount`.list_id
     """)

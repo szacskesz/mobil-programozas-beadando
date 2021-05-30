@@ -4,6 +4,7 @@
   package="hu.szacskesz.mobile.tasklist">
 
   <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
 
   <application
     android:name=".TaskListApplication"
@@ -42,7 +43,10 @@
       android:theme="@style/Theme.TaskList.NoActionBar" />
 
     <receiver android:name=".service.NotificationBroadcastReceiver" />
-
+    <service
+      android:name=".service.NotificationJobIntentService"
+      android:exported="true"
+      android:permission="android.permission.BIND_JOB_SERVICE" />
   </application>
 
 </manifest>

@@ -1,0 +1,117 @@
+#Settings (domain)
+- notificationsEnabled: boolean
+  (if true) - soundNotificationsEnabled: boolean
+  (if true) - vibrationNotificationsEnabled: boolean
+  (if true) - napi összefoglaló engedélyezve: boolean
+    (if true) - napi összefoglaló ideje: time
+- defaultSelectedGroup
+- language
+
+#Group
+- id 
+- name
+
+#Item
+- id
+- description
+- group
+- done: boolean
+- repeating: boolean
+- deadline
+
+#Notification
+- id
+- item
+- diffToDeadline
+
+
+
+feladat lista
+határidő funkcióval
+   - értesítést küld feladat előtti x napon adott fix időpontban (napi összesítő)
+csoportokba lehet rendezni
+-teljesítettek és minden lista mindig létezik
+
+csoport
+- név
+- alapbeállítások új feladathoz
+
+
+#csoport lista nézet
+soronként csoport:
+	-név, aktív feladatok száma, közelgő feladatok száma, lejárt feladatok száma
+törlés, módosítás
+új hozzáadása
+
+#csoport hozzáadása/módosítása 
+	- név
+	- alapbeállítások
+
+#feladat lista
+- új hozzáadaása
+- lista nézet
+	- szűrés:
+	csoport
+	teljesített
+	lejárt
+	időtartományon belül
+	név
+	- sorbarendezés
+		- lejárati dátum szerint
+		- név
+	- feladat funkciók
+		- kijelölés(hosszú nyomás)
+		- módosítás kattintásra
+		- törlés(kijelölteket)
+		- teljesítés(gomb-rá)
+
+#beállítások
+	értesítés
+		- rezgés
+		- hang
+		- mapi összefoglaló ideje
+		- alapértelmezett csoport
+
+
+Tanár Úr, érdeklődnék, hogy a mobil programozás (android) beadandónak megfelelő lenne-e az alábbi feladat:
+
+Egy feladat lista és határidő napló keveréke lenne.
+Csoportokat lehet benne felvenni a rendszerezés kedvéért.
+Ezekbe a csoportokba (vagy csoport nélkül) fel lehetne venni feladatokat.
+Minden feladathoz opcionálisan meg lehetne adni annak a határidejét.
+Meg lehetne jelölni adott feladatot készként, ekkor a teljesítettek közé kerülne.
+
+A nem teljesített illetve a közelgő határidejű feladatokról napi összefoglaló során kapna értesítést a felhasználó (minden nap például 20:00-kor), ennek az időpontja állítható lenne.
+
+Lehetne szűrni a feladatok között
+ - csoportra
+ - névre
+ - teljesítettségre
+ - határidőre (időtartamon belül van vagy sem)
+
+Beállításokban lehetne állítani
+ - napi összefoglaló idejét
+ - értesítés módját(rezgés, hang)
+ - alapértelmezetten megnyitott csoportot (keződoldal)
+ - alapértelmezett beállításokat új feladat létrehozásához
+
+Csoportnál is be lehetne állítani az alapértelmezett beállításokat új feladathoz, felülírva a globális beállításokat.
+
+Illetve ami újdonság lehet más alkalmazásokhoz képest:
+Akár egy évvel a konkrét határidő előtt is lehet kérni hogy értesítsen az alkalmazás a feladatról.
+Illetve lehetne egyedi értesítést is beállítani a feladatokhoz, ami nem napi összefoglaló során fog értesíteni minket hanem amikor mi beállítjuk.
+Itt ellentéteben sok alkalmazással (ami a google naptárra épít általában csak pár különböző időpontot enged beállítani és azt is max 2héttel a konkrét határidő előtt), bármennyit és bármennyire távoli értesíts lehetne beállítani.
+
+Plusz funkcióként még beleraknék ismétlődő feladatokat, melyeknek a teljesítése során csak frissülne a határidejük.
+Így például lehetne emlékeztetőket készíteni születésnapra is.
+
+###  TODO  ###
+- backgroudn service
+- show notifications
+- taskeditor notifications ui + logika
+- day summary
+
+- dependencies átnéz
+- https://developer.android.com/topic/libraries/view-binding/migration
+- https://developer.android.com/training/data-storage/room/relationships
+-  https://developer.android.com/guide/topics/ui/dialogs#CustomLayout

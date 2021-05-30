@@ -1,7 +1,10 @@
 <resources>
-  <!-- General -->
+  <!-- Notifications -->
   <string name="channel_name">TaskList</string>
   <string name="channel_description">Értesítések a TaskList alkalamzástól.</string>
+  <string name="notification_title_day_summary">Napi összefoglaló</string>
+  <string name="notification_content_day_summary">Feladatok ma: %1$d, lejárt: %2$d</string>
+  <string name="notification_title_task">Feladat határidő: %1$s</string>
 
   <!-- Menu -->
   <string name="menu_action_task_lists_title">Feladat listák</string>
@@ -60,16 +63,6 @@
   <string name="settings_notifications_title">Értesítések</string>
   <string name="settings_notifications_on">Engedélyezve</string>
   <string name="settings_notifications_off">Tiltva</string>
-  <string name="settings_sound_title">Hang</string>
-  <string name="settings_sound_on">Engedélyezve</string>
-  <string name="settings_sound_off">Tiltva</string>
-  <string name="settings_sound_file_title">Válassz egy hangot</string>
-  <string name="settings_sound_file_dialog_title">Válassz egy hangot</string>
-  <string name="settings_sound_file_no_value">Nincs megadva</string>
-  <string name="settings_sound_file_value">%s</string>
-  <string name="settings_vibration_title">Rezgés</string>
-  <string name="settings_vibration_on">Engedélyezve</string>
-  <string name="settings_vibration_off">Tiltva</string>
   <string name="settings_day_summary_title">Napi összefoglaló</string>
   <string name="settings_day_summary_on">Engedélyezve</string>
   <string name="settings_day_summary_off">Tiltva</string>

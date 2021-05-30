@@ -5,10 +5,11 @@ import android.os.Bundle
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceManager
 import com.takisoft.preferencex.PreferenceFragmentCompat
-import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
 import hu.szacskesz.mobile.tasklist.R
+import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
 import hu.szacskesz.mobile.tasklist.core.domain.TaskList
 import hu.szacskesz.mobile.tasklist.utils.Constants
+import java.util.*
 
 
 class SettingsActivity : BaseLanguageAwareActivity() {
