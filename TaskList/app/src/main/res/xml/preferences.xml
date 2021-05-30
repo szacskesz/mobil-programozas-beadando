@@ -1,85 +1,46 @@
 <PreferenceScreen
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
->
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="@string/settings_category_general_title">
-        <ListPreference
-            app:key="@string/settings_language_key"
-            app:defaultValue="@string/settings_language_values_default"
-            app:entries="@array/settings_language_entries"
-            app:entryValues="@array/settings_language_values"
-            app:title="@string/settings_language_title"
-            app:useSimpleSummaryProvider="true"
-        />
+  <PreferenceCategory app:title="@string/settings_category_general_title">
+    <ListPreference
+      app:defaultValue="@string/settings_language_values_default"
+      app:entries="@array/settings_language_entries"
+      app:entryValues="@array/settings_language_values"
+      app:key="@string/settings_language_key"
+      app:title="@string/settings_language_title"
+      app:useSimpleSummaryProvider="true" />
 
-        <ListPreference
-            app:key="@string/settings_default_task_list_key"
-            app:title="@string/settings_default_task_list_title"
-            app:useSimpleSummaryProvider="true"
-        />
-    </PreferenceCategory>
+    <ListPreference
+      app:key="@string/settings_default_task_list_key"
+      app:title="@string/settings_default_task_list_title"
+      app:useSimpleSummaryProvider="true" />
+  </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/settings_category_notifications_title">
-        <SwitchPreferenceCompat
-            app:key="@string/settings_notifications_key"
-            app:defaultValue="true"
-            app:summaryOn="@string/settings_notifications_on"
-            app:summaryOff="@string/settings_notifications_off"
-            app:title="@string/settings_notifications_title"
-        />
+  <PreferenceCategory app:title="@string/settings_category_notifications_title">
+    <SwitchPreferenceCompat
+      app:defaultValue="false"
+      app:key="@string/settings_notifications_key"
+      app:summaryOff="@string/settings_notifications_off"
+      app:summaryOn="@string/settings_notifications_on"
+      app:title="@string/settings_notifications_title" />
 
-        <SwitchPreferenceCompat
-            app:key="@string/settings_sound_key"
-            app:dependency="@string/settings_notifications_key"
-            app:defaultValue="false"
-            app:summaryOn="@string/settings_sound_on"
-            app:summaryOff="@string/settings_sound_off"
-            app:title="@string/settings_sound_title"
-        />
+    <SwitchPreferenceCompat
+      app:defaultValue="false"
+      app:dependency="@string/settings_notifications_key"
+      app:key="@string/settings_day_summary_key"
+      app:summaryOff="@string/settings_day_summary_off"
+      app:summaryOn="@string/settings_day_summary_on"
+      app:title="@string/settings_day_summary_title" />
 
-        <!--suppress AndroidElementNotAllowed -->
-        <RingtonePreference
-            app:key="@string/settings_sound_file_key"
-            app:dependency="@string/settings_sound_key"
-            app:dialogTitle="@string/settings_sound_file_dialog_title"
-            android:showDefault="true"
-            android:showSilent="true"
-            android:ringtoneType="notification"
-            app:title="@string/settings_sound_file_title"
-            app:pref_showAdd="false"
-            app:summary="@string/settings_sound_file_no_value"
-            app:pref_summaryHasRingtone="@string/settings_sound_file_value"
-        />
-
-        <SwitchPreferenceCompat
-            app:key="@string/settings_vibration_key"
-            app:dependency="@string/settings_notifications_key"
-            app:defaultValue="true"
-            app:summaryOn="@string/settings_vibration_on"
-            app:summaryOff="@string/settings_vibration_off"
-            app:title="@string/settings_vibration_title"
-        />
-
-        <SwitchPreferenceCompat
-            app:key="@string/settings_day_summary_key"
-            app:dependency="@string/settings_notifications_key"
-            app:defaultValue="true"
-            app:summaryOn="@string/settings_day_summary_on"
-            app:summaryOff="@string/settings_day_summary_off"
-            app:title="@string/settings_day_summary_title"
-        />
-
-        <!--suppress AndroidElementNotAllowed -->
-        <TimePickerPreference
-            app:key="@string/settings_day_summary_time_key"
-            app:dependency="@string/settings_day_summary_key"
-            app:defaultValue="20:00"
-            app:summary="@string/settings_day_summary_time_no_value"
-            app:title="@string/settings_day_summary_time_title"
-            app:pref_hourFormat="h24"
-            app:pref_summaryTimePattern="HH:mm"
-            app:pref_summaryHasTime="@string/settings_day_summary_time_value"
-        />
-    </PreferenceCategory>
+    <!--suppress AndroidElementNotAllowed -->
+    <TimePickerPreference
+      app:defaultValue="20:00"
+      app:dependency="@string/settings_day_summary_key"
+      app:key="@string/settings_day_summary_time_key"
+      app:pref_hourFormat="h24"
+      app:pref_summaryHasTime="@string/settings_day_summary_time_value"
+      app:pref_summaryTimePattern="HH:mm"
+      app:summary="@string/settings_day_summary_time_no_value"
+      app:title="@string/settings_day_summary_time_title" />
+  </PreferenceCategory>
 </PreferenceScreen>

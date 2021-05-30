@@ -9,17 +9,21 @@ import hu.szacskesz.mobile.tasklist.core.interactors.*
 import hu.szacskesz.mobile.tasklist.framework.Interactors
 import hu.szacskesz.mobile.tasklist.framework.db.datasource.RoomTaskDataSource
 import hu.szacskesz.mobile.tasklist.framework.db.datasource.RoomTaskListDataSource
+import hu.szacskesz.mobile.tasklist.service.NotificationHelperService
 
 
 class TaskListApplication : Application() {
 
+    lateinit var taskRepository: TaskRepository
+    lateinit var taskListRepository: TaskListRepository
+
     override fun onCreate() {
         super.onCreate()
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        val taskRepository = TaskRepository(RoomTaskDataSource(this))
-        val taskListRepository = TaskListRepository(RoomTaskListDataSource(this))
+        taskRepository = TaskRepository(RoomTaskDataSource(this))
+        taskListRepository = TaskListRepository(RoomTaskListDataSource(this))
 
         CommonViewModelFactory.inject(
             this,
@@ -37,5 +41,8 @@ class TaskListApplication : Application() {
                 DeleteTaskList(taskListRepository),
             )
         )
+
+        NotificationHelperService.createNotificationChannel(this)
+        NotificationHelperService.handleSettingsChangeForNotifications(this)
     }
 }

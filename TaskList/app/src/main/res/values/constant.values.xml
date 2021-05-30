@@ -5,9 +5,10 @@
     <string name="settings_language_key">language</string>
     <string name="settings_default_task_list_key">default_task_list</string>
     <string name="settings_notifications_key">notifications</string>
-    <string name="settings_sound_key">sound</string>
-    <string name="settings_sound_file_key">sound_file</string>
-    <string name="settings_vibration_key">vibration</string>
     <string name="settings_day_summary_key">day_summary</string>
     <string name="settings_day_summary_time_key">day_summary_time</string>
+    <string name="settings_language_values_default" translatable="false">en</string>
+    <string name="channel_id">TaskListChannel</string>
+    <integer name="notification_summary_id">1</integer>
+    <integer name="notification_task_id">2</integer>
 </resources>

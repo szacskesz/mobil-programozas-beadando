@@ -3,6 +3,9 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   package="hu.szacskesz.mobile.tasklist">
 
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+
   <application
     android:name=".TaskListApplication"
     android:allowBackup="true"
@@ -39,6 +42,11 @@
       android:parentActivityName=".tasks.TasksActivity"
       android:theme="@style/Theme.TaskList.NoActionBar" />
 
+    <receiver android:name=".service.NotificationBroadcastReceiver" />
+    <service
+      android:name=".service.NotificationJobIntentService"
+      android:exported="true"
+      android:permission="android.permission.BIND_JOB_SERVICE" />
   </application>
 
 </manifest>

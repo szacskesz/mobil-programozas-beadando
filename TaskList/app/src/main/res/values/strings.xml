@@ -1,4 +1,11 @@
 <resources>
+  <!-- Notifications -->
+  <string name="channel_name">TaskList</string>
+  <string name="channel_description">Notifications from TaskList app.</string>
+  <string name="notification_title_day_summary">Day summary</string>
+  <string name="notification_content_day_summary">Tasks today: %1$d, overdue: %2$d</string>
+  <string name="notification_title_task">Task deadline: %1$s</string>
+
   <!-- Menu -->
   <string name="menu_action_task_lists_title">Task lists</string>
   <string name="menu_action_settings_title">Settings</string>
@@ -56,16 +63,6 @@
   <string name="settings_notifications_title">Notifications</string>
   <string name="settings_notifications_on">Enabled</string>
   <string name="settings_notifications_off">Disabled</string>
-  <string name="settings_sound_title">Sound</string>
-  <string name="settings_sound_on">Enabled</string>
-  <string name="settings_sound_off">Disabled</string>
-  <string name="settings_sound_file_title">Choose a sound</string>
-  <string name="settings_sound_file_dialog_title">Choose a sound</string>
-  <string name="settings_sound_file_no_value">Not set</string>
-  <string name="settings_sound_file_value">%s</string>
-  <string name="settings_vibration_title">Vibration</string>
-  <string name="settings_vibration_on">Enabled</string>
-  <string name="settings_vibration_off">Disabled</string>
   <string name="settings_day_summary_title">Day summary</string>
   <string name="settings_day_summary_on">Enabled</string>
   <string name="settings_day_summary_off">Disabled</string>
