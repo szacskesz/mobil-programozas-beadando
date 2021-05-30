@@ -1,14 +1,12 @@
 package hu.szacskesz.mobile.tasklist.tasks
 
-import android.app.*
-import android.content.Context
+import android.app.Activity
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.View
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import hu.szacskesz.mobile.tasklist.R
 import hu.szacskesz.mobile.tasklist.common.BaseLanguageAwareActivity
 import hu.szacskesz.mobile.tasklist.core.domain.Task
@@ -114,36 +112,6 @@ class TasksEditorActivity : BaseLanguageAwareActivity() {
             if(taskToUpdate == null) R.string.tasks_editor_create_field_list_label
             else R.string.tasks_editor_update_field_list_label
         )
-
-        //TODO delete testing
-        if(taskToUpdate != null) {
-            createNotificationChannel()
-            val builder = NotificationCompat.Builder(this, getString(R.string.channel_id))
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle("Title") //TODO:Feladat határidő: 20:33
-                .setContentText("Message") //TODO task.description
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setCategory(NotificationCompat.CATEGORY_REMINDER)
-
-            with(NotificationManagerCompat.from(this)) {
-                notify(R.integer.notification_task_id, builder.build())
-            }
-        }
-    }
-
-    //TODO delete testing
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                getString(R.string.channel_id),
-                getString(R.string.channel_name),
-                NotificationManager.IMPORTANCE_HIGH
-            ).apply { description = getString(R.string.channel_description) }
-
-            val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
     }
 
     private fun updateDeadlineFields() {
