@@ -25,7 +25,7 @@ class NotificationJobIntentService: BaseLanguageAwareJonIntentService() {
             val notificationId = intent.getIntExtra(Constants.IntentExtra.Key.NOTIFICATION_ID, 0)
             val isSummary = (notificationId == Constants.IntentExtra.Value.NOTIFICATION_ID_SUMMARY)
 
-            Log.d("NOTIFICATION_SERVICE", "Handling notificiton for id: $notificationId")
+            Log.d("NOTIFICATION_SERVICE", "Handling notification for id: $notificationId")
 
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val isNotificationsEnabled = sharedPrefs.getBoolean(context.getString(R.string.settings_notifications_key), false)
@@ -71,6 +71,7 @@ class NotificationJobIntentService: BaseLanguageAwareJonIntentService() {
                 } else {
                     val task = taskRepository.readByTaskNotificationId(notificationId)
                     if(task != null) {
+                        Log.d("NOTIFICATION_SERVICE", "Showing notification for task: $task")
                         (context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager).notify(
                             notificationId,
                             NotificationHelperService.createNotificationForTask(context, task)

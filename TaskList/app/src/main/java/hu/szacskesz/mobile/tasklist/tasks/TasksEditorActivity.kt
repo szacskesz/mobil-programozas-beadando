@@ -22,7 +22,7 @@ class TasksEditorActivity : BaseLanguageAwareActivity() {
 
     private var deadline: Calendar? = null
 
-    private var notifications: MutableLiveData<List<TaskNotification>> = MutableLiveData()
+    private var notifications: MutableLiveData<List<TaskNotification>> = MutableLiveData(listOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
