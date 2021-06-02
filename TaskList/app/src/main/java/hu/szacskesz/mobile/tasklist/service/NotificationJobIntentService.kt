@@ -25,6 +25,8 @@ class NotificationJobIntentService: BaseLanguageAwareJonIntentService() {
             val notificationId = intent.getIntExtra(Constants.IntentExtra.Key.NOTIFICATION_ID, 0)
             val isSummary = (notificationId == Constants.IntentExtra.Value.NOTIFICATION_ID_SUMMARY)
 
+            Log.d("NOTIFICATION_SERVICE", "Handling notificiton for id: $notificationId")
+
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val isNotificationsEnabled = sharedPrefs.getBoolean(context.getString(R.string.settings_notifications_key), false)
             val isDaySummaryEnabled = sharedPrefs.getBoolean(context.getString(R.string.settings_day_summary_key), false)

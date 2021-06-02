@@ -101,7 +101,7 @@ class TasksEditorActivity : BaseLanguageAwareActivity() {
         ))
 
         createDeadlineDueDateField()
-        createDeadlineDueTimeField()
+
         if(taskWithTaskNotificationsToUpdate != null) {
             if(taskWithTaskNotificationsToUpdate.deadline != null) {
                 val cal = Calendar.getInstance()
@@ -186,86 +186,31 @@ class TasksEditorActivity : BaseLanguageAwareActivity() {
         val calendar = deadline
 
         if(calendar != null) {
-            tasks_editor_field_due_date.setText(DateFormat.getDateFormat(this).format(calendar.time))
-            tasks_editor_field_due_time.setText(DateFormat.getTimeFormat(this).format(calendar.time))
+            tasks_editor_field_due_date.setText(
+                StringBuilder()
+                    .append(DateFormat.getDateFormat(this).format(calendar.time))
+                    .append(" ")
+                    .append(DateFormat.getTimeFormat(this).format(calendar.time))
+                    .toString()
+            )
             tasks_editor_field_due_date_cancel.visibility = View.VISIBLE
-            tasks_editor_field_due_time_cancel.visibility = View.VISIBLE
         } else {
             tasks_editor_field_due_date.setText("")
             tasks_editor_field_due_date_cancel.visibility = View.GONE
-            tasks_editor_field_due_time.setText("")
-            tasks_editor_field_due_time_cancel.visibility = View.GONE
         }
     }
 
     private fun createDeadlineDueDateField() {
         val dueDateOnClickListener: (v: View) -> Unit = {
             val calendar = deadline ?: Calendar.getInstance()
-            val dialog = DatePickerDialog(
-                this,
-                { _, year, month, dayOfMonth ->
-                    calendar.set(Calendar.YEAR, year)
-                    calendar.set(Calendar.MONTH, month)
-                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-                    deadline = calendar
-                    updateDeadlineFields()
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            )
-            dialog.setButton(
-                DatePickerDialog.BUTTON_POSITIVE,
-                getString(R.string.tasks_editor_picker_dialog_yes_button),
-                dialog
-            )
-            dialog.setButton(
-                DatePickerDialog.BUTTON_NEGATIVE,
-                getString(R.string.tasks_editor_picker_dialog_no_button),
-                dialog
-            )
-            dialog.show()
+            createDateTimePickerDialog({
+                deadline = it
+                updateDeadlineFields()
+            }, calendar)
         }
         tasks_editor_field_due_date_toggle.setOnClickListener(dueDateOnClickListener)
         tasks_editor_field_due_date.setOnClickListener(dueDateOnClickListener)
         tasks_editor_field_due_date_cancel.setOnClickListener {
-            deadline = null
-            updateDeadlineFields()
-        }
-    }
-
-    private fun createDeadlineDueTimeField() {
-        val dueTimeOnClickListener: (v: View) -> Unit = {
-            val calendar = deadline ?: Calendar.getInstance()
-            val dialog = TimePickerDialog(
-                this,
-                { _, hourOfDay, minute ->
-                    calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                    calendar.set(Calendar.MINUTE, minute)
-
-                    deadline = calendar
-                    updateDeadlineFields()
-                },
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
-                true
-            )
-            dialog.setButton(
-                TimePickerDialog.BUTTON_POSITIVE,
-                getString(R.string.tasks_editor_picker_dialog_yes_button),
-                dialog
-            )
-            dialog.setButton(
-                TimePickerDialog.BUTTON_NEGATIVE,
-                getString(R.string.tasks_editor_picker_dialog_no_button),
-                dialog
-            )
-            dialog.show()
-        }
-        tasks_editor_field_due_time_toggle.setOnClickListener(dueTimeOnClickListener)
-        tasks_editor_field_due_time.setOnClickListener(dueTimeOnClickListener)
-        tasks_editor_field_due_time_cancel.setOnClickListener {
             deadline = null
             updateDeadlineFields()
         }
