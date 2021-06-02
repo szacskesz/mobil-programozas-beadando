@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
 import hu.szacskesz.mobile.tasklist.R
 import hu.szacskesz.mobile.tasklist.utils.ContextUtils
-import java.util.Locale
+import java.util.*
 
 
 abstract class BaseLanguageAwareActivity : AppCompatActivity() {

@@ -15,6 +15,16 @@ data class Task(
 ) : Parcelable
 
 @Parcelize
+data class TaskWithTaskNotifications(
+    val id: Int = 0,
+    val description: String,
+    val done: Boolean,
+    val deadline: Date?,
+    val listId: Int?,
+    val notifications: List<TaskNotification>
+) : Parcelable
+
+@Parcelize
 data class TaskWithTaskListName(
     val id: Int = 0,
     val description: String,

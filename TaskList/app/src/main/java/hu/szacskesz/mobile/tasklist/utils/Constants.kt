@@ -27,7 +27,7 @@ object Constants {
         object Key {
             const val TASK_LISTS = "taskLists"
             const val SELECTED_TASK_LIST_ID = "selectedTaskListId"
-            const val TASK_TO_UPDATE = "taskToUpdate"
+            const val TASK_WITH_TASK_NOTIFCATIONS_TO_UPDATE = "TaskWithTaskNotificationsToUpdate"
             const val ACTION = "action"
             const val TASK = "task"
             const val NOTIFICATION_ID = "notification_id"

@@ -3,7 +3,7 @@ package hu.szacskesz.mobile.tasklist.viewmodels
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import hu.szacskesz.mobile.tasklist.common.CommonViewModel
-import hu.szacskesz.mobile.tasklist.core.domain.Task
+import hu.szacskesz.mobile.tasklist.core.domain.TaskWithTaskNotifications
 import hu.szacskesz.mobile.tasklist.framework.Interactors
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class TaskViewModel(application: Application, interactors: Interactors) : CommonViewModel(application, interactors) {
+class TaskWithTaskNotificationsViewModel(application: Application, interactors: Interactors) : CommonViewModel(application, interactors) {
 
-    val tasks: MutableLiveData<List<Task>> = MutableLiveData()
+    val taskWithTaskNotifications: MutableLiveData<List<TaskWithTaskNotifications>> = MutableLiveData()
 
     private var id: Int? = null
     private var listId: Int? = null
@@ -25,35 +25,35 @@ class TaskViewModel(application: Application, interactors: Interactors) : Common
         this.isFinished = isFinished
 
         GlobalScope.launch {
-            val docs = interactors.readTasks(id, listId, isFinished)
-            tasks.postValue(docs)
+            val docs = interactors.readTaskWithTaskNotifications(id, listId, isFinished)
+            taskWithTaskNotifications.postValue(docs)
         }
     }
 
-    fun create(task: Task) {
+    fun create(taskWithTaskNotifications: TaskWithTaskNotifications) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                interactors.createTask(task)
+                interactors.createTaskWithTaskNotifications(taskWithTaskNotifications)
             }
 
             read(id, listId, isFinished)
         }
     }
 
-    fun update(task: Task) {
+    fun update(taskWithTaskNotifications: TaskWithTaskNotifications) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                interactors.updateTask(task)
+                interactors.updateTaskWithTaskNotifications(taskWithTaskNotifications)
             }
 
             read(id, listId, isFinished)
         }
     }
 
-    fun delete(task: Task) {
+    fun delete(taskWithTaskNotifications: TaskWithTaskNotifications) {
         GlobalScope.launch {
             withContext(Dispatchers.IO) {
-                interactors.deleteTask(task)
+                interactors.deleteTaskWithTaskNotifications(taskWithTaskNotifications)
             }
 
             read(id, listId, isFinished)
