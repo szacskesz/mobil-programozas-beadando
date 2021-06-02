@@ -1,11 +1,21 @@
 package hu.szacskesz.mobile.tasklist.core.domain
 
-import java.util.Date
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 
-//TODO
+@Parcelize
 data class TaskNotification(
     val id: Int,
+    val datetime: Date,
+    val taskId: Int,
+) : Parcelable
+
+@Parcelize
+data class TaskNotificationWithTask(
+    val id: Int,
+    val datetime: Date,
+    val taskId: Int,
     val task: Task,
-    val diffToDeadline: Date, //TODO
-)
+) : Parcelable

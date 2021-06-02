@@ -10,12 +10,14 @@ import hu.szacskesz.mobile.tasklist.framework.db.dao.TaskDao
 import hu.szacskesz.mobile.tasklist.framework.db.dao.TaskListDao
 import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskEntity
 import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskListEntity
+import hu.szacskesz.mobile.tasklist.framework.db.entity.TaskNotificationEntity
 
 
 @Database(
     entities = [
         TaskEntity::class,
-        TaskListEntity::class
+        TaskListEntity::class,
+        TaskNotificationEntity::class,
    ],
     version = 1,
     exportSchema = false

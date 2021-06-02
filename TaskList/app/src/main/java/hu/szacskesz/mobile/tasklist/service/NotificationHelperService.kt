@@ -8,57 +8,33 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.text.format.DateFormat
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.preference.PreferenceManager
 import hu.szacskesz.mobile.tasklist.R
 import hu.szacskesz.mobile.tasklist.core.domain.Task
+import hu.szacskesz.mobile.tasklist.core.domain.TaskNotification
 import hu.szacskesz.mobile.tasklist.utils.Constants
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 object NotificationHelperService {
-    fun setTaskNotificationTime(context: Context, task: Task, dateTime: Date?) {
-        if(dateTime != null ) {
-            scheduleNotification(
-                context,
-                task.id, //TODO shouldnt we use TaskNotification instead of Task
-                dateTime
-            )
-        } else {
-            cancelNotification(context, task.id)
-        }
-    }
 
-    fun setSummaryNotificationTime(context: Context, dateTime: Date?) {
-        if(dateTime != null ) {
-            scheduleNotification(
-                context,
-                Constants.IntentExtra.Value.NOTIFICATION_ID_SUMMARY,
-                dateTime
-            )
-        } else {
-            cancelNotification(context, Constants.IntentExtra.Value.NOTIFICATION_ID_SUMMARY)
-        }
-    }
-
-    //Note: task without deadline should not have any notification, so we can assume it has
-    fun createNotificationForTask(context: Context, task: Task): Notification {
-        val title = context.getString(
-            R.string.notification_title_task,
+    public fun createNotificationForTask(context: Context, task: Task): Notification {
+        val title =
+        if(task.deadline != null) context.getString(
+            R.string.notification_title_task_with_deadline,
             StringBuilder()
                 .append(DateFormat.getDateFormat(context).format(task.deadline!!))
                 .append(" ")
                 .append(DateFormat.getTimeFormat(context).format(task.deadline!!))
                 .toString()
-        )
+        ) else context.getString(R.string.notification_title_task_without_deadline)
         val content = task.description
 
         return createNotification(context, title, content)
     }
 
-    fun createNotificationForSummary(context: Context, taskCount: Int, overdueTaskCount: Int): Notification {
+    public fun createNotificationForSummary(context: Context, taskCount: Int, overdueTaskCount: Int): Notification {
         val title = context.getString(R.string.notification_title_day_summary)
         val content = context.getString(R.string.notification_content_day_summary, taskCount, overdueTaskCount)
 
@@ -78,6 +54,30 @@ object NotificationHelperService {
             .setVibrate(longArrayOf(1000, 1000, 1000))
             .setLights(Color.WHITE, 3000, 3000)
             .build()
+    }
+
+    public fun scheduleNotificationForTask(context: Context, task: Task, taskNotification: TaskNotification) {
+        scheduleNotification(
+            context,
+            taskNotification.id,
+            taskNotification.datetime
+        )
+    }
+
+    public fun unscheduleNotificationForTask(context: Context, task: Task, taskNotification: TaskNotification) {
+        cancelNotification(context, taskNotification.id)
+    }
+
+    public fun scheduleNotificationForSummary(context: Context, dateTime: Date?) {
+        if(dateTime != null ) {
+            scheduleNotification(
+                context,
+                Constants.IntentExtra.Value.NOTIFICATION_ID_SUMMARY,
+                dateTime
+            )
+        } else {
+            cancelNotification(context, Constants.IntentExtra.Value.NOTIFICATION_ID_SUMMARY)
+        }
     }
 
     private fun scheduleNotification(
@@ -109,7 +109,7 @@ object NotificationHelperService {
         alarmManager.cancel(pendingIntent)
     }
 
-    fun createNotificationChannel(context: Context) {
+    public fun createNotificationChannel(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
                 Constants.Notification.CHANNEL_ID,
@@ -130,11 +130,11 @@ object NotificationHelperService {
     lateinit var sharedPrefChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
 
     @SuppressLint("SimpleDateFormat")
-    fun handleSettingsChangeForNotifications(context: Context) {
+    public fun handleSettingsChangeForNotifications(context: Context) {
 
         val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
         sharedPrefChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { prefs, _ ->
-            setSummaryNotificationTime(context, null)
+            scheduleNotificationForSummary(context, null)
 
             val isNotificationsEnabled = prefs.getBoolean(context.getString(R.string.settings_notifications_key), false)
             val isDaySummaryEnabled = prefs.getBoolean(context.getString(R.string.settings_day_summary_key), false)
@@ -153,7 +153,7 @@ object NotificationHelperService {
                 //for past times
                 if(calendar.before(Calendar.getInstance())) calendar.add(Calendar.DAY_OF_MONTH, 1)
 
-                setSummaryNotificationTime(context, calendar.time)
+                scheduleNotificationForSummary(context, calendar.time)
             }
         }
         sharedPrefs.registerOnSharedPreferenceChangeListener(sharedPrefChangeListener)

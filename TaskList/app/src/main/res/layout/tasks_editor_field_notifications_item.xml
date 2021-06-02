@@ -1,0 +1,51 @@
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_marginTop="5dp"
+  android:background="@drawable/task_lists_item_background"
+  android:baselineAligned="false"
+  android:clickable="true"
+  android:focusable="true"
+  android:orientation="horizontal"
+  android:padding="5dp">
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/tasks_editor_field_notifications_datetime"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:textColor="@color/black"
+      android:textSize="18sp"
+      tools:text="2022.01.01 10:33" />
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_weight="0"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageButton
+      android:id="@+id/tasks_editor_notifications_delete_button"
+      android:layout_width="@dimen/button"
+      android:layout_height="@dimen/button"
+      android:layout_marginStart="10dp"
+      android:layout_marginLeft="10dp"
+      android:background="?attr/selectableItemBackgroundBorderless"
+      android:contentDescription="@string/tasks_editor_notifications_delete_description"
+      android:src="@drawable/ic_delete"
+      app:tint="@color/alert_blue" />
+  </LinearLayout>
+</LinearLayout>

@@ -4,7 +4,8 @@
   <string name="channel_description">Értesítések a TaskList alkalamzástól.</string>
   <string name="notification_title_day_summary">Napi összefoglaló</string>
   <string name="notification_content_day_summary">Feladatok ma: %1$d, lejárt: %2$d</string>
-  <string name="notification_title_task">Feladat határidő: %1$s</string>
+  <string name="notification_title_task_without_deadline">Feladat</string>
+  <string name="notification_title_task_with_deadline">Feladat határidő: %1$s</string>
 
   <!-- Menu -->
   <string name="menu_action_task_lists_title">Feladat listák</string>
@@ -25,6 +26,9 @@
   <string name="tasks_editor_field_due_time_hint">Nincs időpont beállítva (egész nap)</string>
   <string name="tasks_editor_picker_dialog_yes_button">Ok</string>
   <string name="tasks_editor_picker_dialog_no_button">Mégse</string>
+  <string name="tasks_editor_field_notifications_label">Értesítések</string>
+  <string name="tasks_editor_notifications_create_description">Értesítés létrehozása</string>
+  <string name="tasks_editor_notifications_delete_description">Értesítés törlése</string>
   <string name="tasks_editor_create_field_list_label">Listához ad</string>
   <string name="tasks_editor_update_field_list_label">Feladatlista</string>
   <string name="tasks_delete_dialog_title">Biztos benne?</string>

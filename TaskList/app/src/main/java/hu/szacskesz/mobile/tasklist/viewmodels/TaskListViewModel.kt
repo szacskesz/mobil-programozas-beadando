@@ -15,9 +15,13 @@ class TaskListViewModel(application: Application, interactors: Interactors) : Co
 
     val taskLists: MutableLiveData<List<TaskList>> = MutableLiveData()
 
-    fun read() {
+    private var id: Int? = null
+
+    fun read(id: Int?) {
+        this.id = id
+
         GlobalScope.launch {
-            val docs = interactors.readTaskLists()
+            val docs = interactors.readTaskLists(id)
             taskLists.postValue(docs)
         }
     }
@@ -27,7 +31,8 @@ class TaskListViewModel(application: Application, interactors: Interactors) : Co
             withContext(Dispatchers.IO) {
                 interactors.createTaskList(taskList)
             }
-            read()
+
+            read(id)
         }
     }
 
@@ -36,7 +41,8 @@ class TaskListViewModel(application: Application, interactors: Interactors) : Co
             withContext(Dispatchers.IO) {
                 interactors.updateTaskList(taskList)
             }
-            read()
+
+            read(id)
         }
     }
 
@@ -45,7 +51,8 @@ class TaskListViewModel(application: Application, interactors: Interactors) : Co
             withContext(Dispatchers.IO) {
                 interactors.deleteTaskList(taskList)
             }
-            read()
+
+            read(id)
         }
     }
 }

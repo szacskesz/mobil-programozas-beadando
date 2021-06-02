@@ -47,7 +47,7 @@ class TaskListsActivity : BaseLanguageAwareActivity() {
         task_lists_recycler_view.adapter  = adapter
 
         viewModel.taskListWithTasksCounts.observe(this, { adapter.update(it) })
-        viewModel.read()
+        viewModel.read(null)
 
         task_lists_item_add_button.setOnClickListener {
             TaskListsEditorDialogFragment()

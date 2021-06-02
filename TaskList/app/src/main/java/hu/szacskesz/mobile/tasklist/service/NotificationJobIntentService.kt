@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.preference.PreferenceManager
 import hu.szacskesz.mobile.tasklist.R
 import hu.szacskesz.mobile.tasklist.TaskListApplication
@@ -24,6 +25,8 @@ class NotificationJobIntentService: BaseLanguageAwareJonIntentService() {
             val notificationId = intent.getIntExtra(Constants.IntentExtra.Key.NOTIFICATION_ID, 0)
             val isSummary = (notificationId == Constants.IntentExtra.Value.NOTIFICATION_ID_SUMMARY)
 
+            Log.d("NOTIFICATION_SERVICE", "Handling notificiton for id: $notificationId")
+
             val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
             val isNotificationsEnabled = sharedPrefs.getBoolean(context.getString(R.string.settings_notifications_key), false)
             val isDaySummaryEnabled = sharedPrefs.getBoolean(context.getString(R.string.settings_day_summary_key), false)
@@ -35,11 +38,11 @@ class NotificationJobIntentService: BaseLanguageAwareJonIntentService() {
                 return@let cal
             }
 
+            val taskRepository = (application as TaskListApplication).taskRepository
+
             if(isNotificationsEnabled) {
                 if(isSummary) {
                     if(isDaySummaryEnabled && daySummaryTime != null) {
-                        val taskRepository = (application as TaskListApplication).taskRepository
-
                         val from = Calendar.getInstance()
                         from.set(Calendar.HOUR_OF_DAY, 0)
                         from.set(Calendar.MINUTE, 0)
@@ -66,8 +69,13 @@ class NotificationJobIntentService: BaseLanguageAwareJonIntentService() {
                         )
                     }
                 } else {
-                    //TODO
-//                    NotificationHelperService.createNotificationForTask(context, task)
+                    val task = taskRepository.readByTaskNotificationId(notificationId)
+                    if(task != null) {
+                        (context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager).notify(
+                            notificationId,
+                            NotificationHelperService.createNotificationForTask(context, task)
+                        )
+                    }
                 }
             }
         }

@@ -4,5 +4,5 @@ import hu.szacskesz.mobile.tasklist.core.data.TaskListRepository
 
 
 class ReadTaskLists(private val repository: TaskListRepository) {
-    suspend operator fun invoke() = repository.read();
+    suspend operator fun invoke(id: Int?) = repository.read(id)
 }

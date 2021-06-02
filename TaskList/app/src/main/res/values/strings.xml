@@ -4,7 +4,8 @@
   <string name="channel_description">Notifications from TaskList app.</string>
   <string name="notification_title_day_summary">Day summary</string>
   <string name="notification_content_day_summary">Tasks today: %1$d, overdue: %2$d</string>
-  <string name="notification_title_task">Task deadline: %1$s</string>
+  <string name="notification_title_task_without_deadline">Task</string>
+  <string name="notification_title_task_with_deadline">Task deadline: %1$s</string>
 
   <!-- Menu -->
   <string name="menu_action_task_lists_title">Task lists</string>
@@ -25,6 +26,9 @@
   <string name="tasks_editor_field_due_time_hint">Time not set (all day)</string>
   <string name="tasks_editor_picker_dialog_yes_button">Ok</string>
   <string name="tasks_editor_picker_dialog_no_button">Cancel</string>
+  <string name="tasks_editor_field_notifications_label">Notifications</string>
+  <string name="tasks_editor_notifications_create_description">Create notification</string>
+  <string name="tasks_editor_notifications_delete_description">Delete notification</string>
   <string name="tasks_editor_create_field_list_label">Add to list</string>
   <string name="tasks_editor_update_field_list_label">Task list</string>
   <string name="tasks_delete_dialog_title">Are you sure</string>

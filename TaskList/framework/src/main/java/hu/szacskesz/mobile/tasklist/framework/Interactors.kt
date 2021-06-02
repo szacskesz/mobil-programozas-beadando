@@ -3,16 +3,27 @@ package hu.szacskesz.mobile.tasklist.framework
 import hu.szacskesz.mobile.tasklist.core.interactors.*
 
 data class Interactors(
-    val createTask: CreateTask,
     val readTasks: ReadTasks,
-    val readTaskWithTaskLists: ReadTaskWithTaskLists,
-    val readTaskWithTaskListNames: ReadTaskWithTaskListNames,
+    val createTask: CreateTask,
     val updateTask: UpdateTask,
     val deleteTask: DeleteTask,
 
-    val createTaskList: CreateTaskList,
+    val readTaskWithTaskListNames: ReadTaskWithTaskListNames,
+    val readTaskWithTaskLists: ReadTaskWithTaskLists,
+
+    val getTaskCount: GetTaskCount,
+
+    val readTaskWithTaskNotifications: ReadTaskWithTaskNotifications,
+    val createTaskWithTaskNotifications: CreateTaskWithTaskNotifications,
+    val updateTaskWithTaskNotifications: UpdateTaskWithTaskNotifications,
+    val deleteTaskWithTaskNotifications: DeleteTaskWithTaskNotifications,
+
+    val readTaskByTaskNotificationId: ReadTaskByTaskNotificationId,
+
     val readTaskLists: ReadTaskLists,
-    val readTaskListWithTasksCounts: ReadTaskListWithTasksCounts,
+    val createTaskList: CreateTaskList,
     val updateTaskList: UpdateTaskList,
     val deleteTaskList: DeleteTaskList,
+
+    val readTaskListWithTasksCounts: ReadTaskListWithTasksCounts,
 )

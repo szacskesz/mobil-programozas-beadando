@@ -4,5 +4,5 @@ import hu.szacskesz.mobile.tasklist.core.data.TaskRepository
 
 
 class ReadTasks(private val repository: TaskRepository) {
-    suspend operator fun invoke(listId: Int?, isFinished: Boolean?) = repository.read(listId, isFinished)
+    suspend operator fun invoke(id: Int?, listId: Int?, isFinished: Boolean?) = repository.read(id, listId, isFinished)
 }

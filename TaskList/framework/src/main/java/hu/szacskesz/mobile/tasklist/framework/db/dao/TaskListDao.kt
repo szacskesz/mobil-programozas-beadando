@@ -9,12 +9,22 @@ import java.util.*
 @Dao
 interface TaskListDao {
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    suspend fun create(taskList: TaskListEntity)
+    @Query("""
+        SELECT * FROM `task_list` WHERE
+            (:id IS NUll OR `task_list`.id = :id)
+    """)
+    suspend fun read(id: Int?) : List<TaskListEntity>
 
-    @Transaction
-    @Query("""SELECT * FROM `task_list`""")
-    suspend fun read() : List<TaskListEntity>
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun create(taskList: TaskListEntity): Long
+
+    @Update(onConflict = OnConflictStrategy.ABORT)
+    suspend fun update(taskList: TaskListEntity)
+
+    @Delete
+    suspend fun delete(taskList: TaskListEntity)
+
+
 
     @Transaction
     @Query("""
@@ -28,12 +38,7 @@ interface TaskListDao {
                 SELECT list_id, COUNT(*) as `count` FROM `task` WHERE NOT `task`.done AND `task`.deadline < :nowDate GROUP BY `task`.list_id
             ) as `overdueTaskCount`
             ON `task_list`.id = `overdueTaskCount`.list_id
+        WHERE (:id IS NUll OR `task_list`.id = :id)
     """)
-    suspend fun readWithTasksCount(nowDate: Date) : List<TaskListWithTasksCountEntity>
-
-    @Update(onConflict = OnConflictStrategy.ABORT)
-    suspend fun update(taskList: TaskListEntity)
-
-    @Delete
-    suspend fun delete(taskList: TaskListEntity)
+    suspend fun readWithTasksCount(id: Int?, nowDate: Date) : List<TaskListWithTasksCountEntity>
 }
